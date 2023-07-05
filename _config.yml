@@ -33,9 +33,9 @@ github_username:  idlescience
 markdown: kramdown
 
 header_pages:
-  - index.markdown
-  - about.markdown
-  - news.markdown
+  - pages/index.markdown
+  - pages/about.markdown
+  - pages/news.markdown
 
 # Exclude from processing.
 # The following items will not be processed, by default.

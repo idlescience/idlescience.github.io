@@ -6,4 +6,4 @@ permalink: /
 
 ## Hola!
 
-<div id="content_1"></div>
+<div id="component_1"></div>

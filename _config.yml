@@ -30,9 +30,11 @@ twitter_username: IdleScience
 github_username:  idlescience
 
 # Build settings
-theme: minima
-plugins:
-  - jekyll-feed
+markdown: kramdown
+
+header_pages:
+  - index.markdown
+  - about.markdown
 
 # Exclude from processing.
 # The following items will not be processed, by default.

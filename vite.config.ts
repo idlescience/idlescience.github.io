@@ -9,9 +9,9 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/main.tsx'),
-      name: 'idlescience',
-      fileName: 'idlescience',
+      entry: resolve(__dirname, 'src/nucleolus.tsx'),
+      name: 'nucleolus',
+      fileName: 'nucleolus',
     },
     rollupOptions: {
       output: {

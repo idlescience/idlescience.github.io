@@ -2,8 +2,9 @@
 layout: page
 title: Main
 permalink: /
+javascript: nucleolus.js
 ---
 
 ## Hola!
 
-<div id="component_1"></div>
+<div id="root"></div>

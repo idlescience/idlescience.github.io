@@ -7,4 +7,4 @@ categories: game theory
 
 Introduction to Nucleous computaiton in with paralell players
 
-<div id="root"><div>
+<div id="react-app"><div>

@@ -9,13 +9,16 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/nucleolus.tsx'),
-      name: 'nucleolus',
-      fileName: 'nucleolus',
+      entry: [
+        resolve(__dirname, 'src/nucleolus-in-f1.tsx'),
+      ],
+      name: 'idlescience',
+      formats: ['es'],
+      fileName : '[name]'
     },
     rollupOptions: {
       output: {
-        dir: resolve(__dirname, 'dist')
+        dir: resolve(__dirname, 'public/dist'),
       },
     },
   },

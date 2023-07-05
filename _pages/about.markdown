@@ -2,9 +2,11 @@
 layout: page
 title: About
 permalink: /about/
+order: 3
 ---
+# Welcome to "Idle Science"
 
-Welcome to "Idle Science", your go-to destination for exploring the untapped potential of science in achieving a more equitable and sustainable world.
+*Your go-to destination for exploring the untapped potential of science in achieving a more equitable and sustainable world.*
 
 In an era characterized by profound global challenges such as climate change, social inequalities, and environmental degradation, it is imperative that we harness the power of scientific knowledge and innovation for the betterment of society. However, despite the incredible advancements in scientific research and understanding, there exists a persistent gap between the science available to us and its practical application in addressing critical issues.
 

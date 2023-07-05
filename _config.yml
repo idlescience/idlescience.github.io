@@ -32,10 +32,13 @@ github_username:  idlescience
 # Build settings
 markdown: kramdown
 
-header_pages:
-  - pages/index.markdown
-  - pages/about.markdown
-  - pages/news.markdown
+include:
+  - _pages
+  - _sass
+  - _pages
+  - _includes
+  - _layouts
+
 
 # Exclude from processing.
 # The following items will not be processed, by default.

@@ -34,10 +34,6 @@ markdown: kramdown
 
 include:
   - _pages
-  - _sass
-  - _pages
-  - _includes
-  - _layouts
 
 
 # Exclude from processing.

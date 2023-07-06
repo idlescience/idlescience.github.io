@@ -57,7 +57,7 @@ ReactDOM.render(
 bundle exec jekyll serve --baseurl=""
 ```
 
-## Run Vite
+## Build Vite and watch
 ```
-yarn debug
+yarn build --watch
 ```

@@ -7614,5 +7614,5 @@ End`, h = J.solve(ue, {
 }
 jf.render(
   /* @__PURE__ */ Rn.jsx(Tf.StrictMode, { children: /* @__PURE__ */ Rn.jsx(Wf, {}) }),
-  document.getElementById("root")
+  document.getElementById("app-root")
 );

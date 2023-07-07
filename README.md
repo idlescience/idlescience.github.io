@@ -61,3 +61,8 @@ bundle exec jekyll serve --baseurl=""
 ```
 yarn build --watch
 ```
+
+## Run Jest tests and watch
+```
+yarn test --watch
+```

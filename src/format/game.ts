@@ -2,18 +2,24 @@ import { parse } from 'csv-parse';
 
 export type Player = number;
 
-export type vS = {
-    S: Player[],
-    v: number
-};
+export type PlayerSet = Set<Player>;
+
+export type Payoff = number;
+
+export type CoalitionPayoff = [PlayerSet, Payoff];
+
+export type GamePayoffs = { [k: string]: Payoff };
+
+export type CharacteristicFunction = (S: PlayerSet) => Payoff;
 
 export interface IGameStructure {
-    N: Player[],
-    v: vS[],
+    N: PlayerSet,
+    v: CharacteristicFunction,
+    payoffs: GamePayoffs,
 }
 
 export interface IGame extends IGameStructure {
-    fromCsvString: (csvString: string) => IGame
+    fromCsvString: (csvString: string) => Promise<IGame>
 }
 
 export class ParseCsvGameError extends Error {
@@ -23,7 +29,7 @@ export class ParseCsvGameError extends Error {
             message += ` Affected line: ${line}.`
         }
         if (content) {
-            message += ` Affected content: ${content}`
+            message += ` Affected content: ${JSON.stringify(content)}.`
         }
         super(message);
         Object.setPrototypeOf(this, ParseCsvGameError.prototype);
@@ -31,72 +37,91 @@ export class ParseCsvGameError extends Error {
 }
 
 class Game implements IGame {
-    private _N: Player[] = [];
-    private _v: vS[] = [];
+    protected _N: PlayerSet = new Set<Player>();
+    protected _payoffs: GamePayoffs = {};
+
+    protected readonly _v: CharacteristicFunction = (S: PlayerSet): Payoff => {
+        const SString = Array.from(S).sort().join(',');
+        return this._payoffs[SString];
+    };
 
     get N() {
         return this._N;
     }
 
-    set N(NQuote: Player[]) {
+    set N(NQuote: PlayerSet) {
         this._N = NQuote;
     }
 
-    get v() {
+    get payoffs(): GamePayoffs {
+        return this._payoffs;
+    }
+
+    set payoffs(payofssQuote: GamePayoffs) {
+        this._payoffs = payofssQuote;
+    }
+
+    get v(): CharacteristicFunction {
         return this._v;
     }
 
-    set v(vQuote: vS[]) {
-        this._v = vQuote;
-    }
-
     constructor();
-    constructor(NQuote: Player[], vQuote: vS[]);
-    constructor(NQuote?: Player[], vQuote?: vS[]) {
+    constructor(NQuote: PlayerSet, payoffsQuote: GamePayoffs);
+    constructor(NQuote?: PlayerSet, payoffsQuote?: GamePayoffs) {
         if (NQuote) {
             this._N = NQuote;
         }
-        if (vQuote) {
-            this._v = vQuote;
+        if (payoffsQuote) {
+            this._payoffs = payoffsQuote;
         }
     }
 
-
-    fromCsvString(csvString: string): IGame {
-        parse(csvString.trim(), {
-            columns: true
-        }, (err, records) => {
-            if (err) {
-                throw new ParseCsvGameError(err.message);
-            }
-            const v: vS[] = [];
-            const N: Player[] = [];
-            const NSet: Set<number> = new Set<number>();
-            let line = 1;
-            for (const record of records) {
-                if ('S' in record && 'v' in record) {
-                    const SPlayers: Player[] = record['S'].split(',').map(function (item: string) {
-                        try {
-                            return parseInt(item.trim(), 10);
-                        } catch (error) {
-                            throw new ParseCsvGameError('S does not contain any valid player in Integer format.', line, record);
-                        }
-                    });
-                    if (SPlayers.length < 1) {
-                        throw new ParseCsvGameError('S does not contain any valid player in Integer format.', line, record);
-                    }
-                    try {
-                        const v: number = parseFloat(record['v'].trim());
-                    } catch (error) {
-                        throw new ParseCsvGameError('v does not contain a valid value in Float format.', line, record);
-                    }
-                } else {
-                    throw new ParseCsvGameError('S or v column not found.', line, record);
+    protected parseCsvRecord(record: any, line: number): CoalitionPayoff {
+        let coalition: PlayerSet;
+        let payoff: Payoff;
+        if ('coalition' in record && 'payoff' in record) {
+            coalition = new Set<Player>(record['coalition'].split(',').map(function (item: string) {
+                try {
+                    return parseInt(item.trim(), 10);
+                } catch (error) {
+                    throw new ParseCsvGameError('coalition column does not contain any valid player in Integer format.', line, record);
                 }
-                line++;
+            }));
+            if (coalition.size < 1) {
+                throw new ParseCsvGameError('coalition columns does not contain any valid player in Integer format.', line, record);
             }
+            try {
+                payoff = parseFloat(record['payoff'].trim());
+            } catch (error) {
+                throw new ParseCsvGameError('payoff does not contain a valid value in Float format.', line, record);
+            }
+        } else {
+            throw new ParseCsvGameError('coalition or payoff column not found.', line, record);
+        }
+        return [coalition, payoff];
+    }
+
+    public async fromCsvString(csvString: string): Promise<IGame> {
+        const result = new Promise<IGame>((resolve) => {
+            parse(csvString.trim(), {
+                delimiter: ';',
+                columns: true
+            }, (err, records) => {
+                if (err) {
+                    throw new ParseCsvGameError(err.message);
+                }
+                let line = 1;
+                for (const record of records) {
+                    const [coalition, payoff] = this.parseCsvRecord(record, line);
+                    coalition.forEach((value) => this._N.add(value));
+                    const coalitionKey = Array.from(coalition).sort().join(',');
+                    this._payoffs[coalitionKey] = payoff;
+                    line++;
+                }
+                resolve(this);
+            });
         });
-        return this;
+        return result;
     }
 }
 

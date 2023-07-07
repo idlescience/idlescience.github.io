@@ -3,6 +3,6 @@ export default {
         '^.+\\.tsx?$': '@swc/jest'
     },
     roots: [
-        './src/__tests__',
+        './tests',
     ],
 }

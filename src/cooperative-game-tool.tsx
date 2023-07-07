@@ -56,7 +56,7 @@ function App() {
           marginLeft: 'auto',
           marginRight: 'auto'
         }}>
-          coalition;payoff
+          S;v
           1;10
           2;15
           3;12

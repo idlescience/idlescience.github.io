@@ -106,6 +106,9 @@ class Game implements IGame {
                 if (error) {
                     reject(new ParseCsvGameError(error.message));
                 }
+                if (!records || records.length <= 0) {
+                    reject(new ParseCsvGameError('invalid number of lines. There thould be at least 2 lines: header and grand coalition payoff'));
+                }
                 let line = 1;
                 try {
                     for (const record of records) {

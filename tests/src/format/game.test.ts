@@ -1,7 +1,9 @@
-import Game from '../../../src/format/game';
-import { 
+import Game, { ParseCsvGameError } from '../../../src/format/game';
+import {
     THREE_PLAYERS_GAME_MOCK,
-    THREE_PLAYERS_GAME_CSV_MOCK
+    THREE_PLAYERS_GAME_CSV_MOCK,
+    THREE_PLAYERS_GAME_COALITION_PAYOFFS_MOCK,
+    BAD_FORMAT_DELIMITER_GAME_CSV_MOCK
 } from '../../mocks/format/game';
 
 describe('Game class', () => {
@@ -22,4 +24,24 @@ describe('Game class', () => {
         expect(game.N.size).toBe(THREE_PLAYERS_GAME_MOCK.N.size);
         expect(Object.keys(game.payoffs)).toHaveLength(Object.keys(THREE_PLAYERS_GAME_MOCK.payoffs).length);
     });
+
+    it('fromCsvString assigns proper coalition values', async () => {
+        const game = await (new Game()).fromCsvString(THREE_PLAYERS_GAME_CSV_MOCK);
+
+        for (const coalitionPlayoff of THREE_PLAYERS_GAME_COALITION_PAYOFFS_MOCK) {
+            expect(game.v(coalitionPlayoff[0])).toBe(coalitionPlayoff[1]);
+        }
+    });
+
+    it('fromCsvString should rise error when a bad column delimiter is used', async () => {
+        expect.assertions(3);
+
+        try {
+            await (new Game()).fromCsvString(BAD_FORMAT_DELIMITER_GAME_CSV_MOCK);
+        } catch (error) {
+            expect(error).toBeInstanceOf(ParseCsvGameError);
+            expect(error).toHaveProperty('message');
+            expect(error.message).toMatch(/coalition or payoff column not found/i);
+        }
+    }, 60000);
 });

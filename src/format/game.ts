@@ -84,7 +84,7 @@ class Game implements IGame {
                 try {
                     return parseInt(item.trim(), 10);
                 } catch (error) {
-                    throw new ParseCsvGameError('coalition column does not contain any valid player in Integer format.', line, record);
+                    throw new ParseCsvGameError('coalition column players are not in Integer format.', line, record);
                 }
             }));
             if (coalition.size < 1) {
@@ -102,26 +102,29 @@ class Game implements IGame {
     }
 
     public async fromCsvString(csvString: string): Promise<IGame> {
-        const result = new Promise<IGame>((resolve) => {
+        return new Promise<IGame>((resolve, reject) => {
             parse(csvString.trim(), {
                 delimiter: ';',
                 columns: true
-            }, (err, records) => {
-                if (err) {
-                    throw new ParseCsvGameError(err.message);
+            }, (error, records) => {
+                if (error) {
+                    reject(new ParseCsvGameError(error.message));
                 }
                 let line = 1;
-                for (const record of records) {
-                    const [coalition, payoff] = this.parseCsvRecord(record, line);
-                    coalition.forEach((value) => this._N.add(value));
-                    const coalitionKey = Array.from(coalition).sort().join(',');
-                    this._payoffs[coalitionKey] = payoff;
-                    line++;
+                try {
+                    for (const record of records) {
+                        const [coalition, payoff] = this.parseCsvRecord(record, line);
+                        coalition.forEach((value) => this._N.add(value));
+                        const coalitionKey = Array.from(coalition).sort().join(',');
+                        this._payoffs[coalitionKey] = payoff;
+                        line++;
+                    }
+                    resolve(this);
+                } catch (error) {
+                    reject(error);
                 }
-                resolve(this);
             });
         });
-        return result;
     }
 }
 

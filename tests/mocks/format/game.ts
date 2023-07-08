@@ -1,30 +1,34 @@
-import { GamePayoffs, IGameStructure, Player, PlayerSet } from '../../../src/format/game';
+import { CoalitionPayoff, GamePayoffs, IGameStructure, Player, PlayerSet } from '../../../src/format/game';
 
 const N: PlayerSet = new Set<Player>([1, 2, 3]);
 
-const payoffs: GamePayoffs = {
-    '1': 15,
-    '2': 10,
-    '3': 12,
-    '1,2': 30,
-    '1,3': 33,
-    '2,3': 28,
-    '1,2,3': 40,
-};
+export const THREE_PLAYERS_GAME_COALITION_PAYOFFS_MOCK: CoalitionPayoff[] = [
+    [new Set<Player>([1]), 15],
+    [new Set<Player>([2]), 10],
+    [new Set<Player>([3]), 12],
+    [new Set<Player>([1, 2]), 30],
+    [new Set<Player>([1, 3]), 33],
+    [new Set<Player>([2, 3]), 28],
+    [new Set<Player>([1, 2, 3]), 40],
+];
+
+const gamePayoffs: GamePayoffs = {};
+let csvString = 'coalition;payoff';
+let badFormatDelimiterCsvString = 'coalition,payoff';
+
+for (const coalitionPlayoff of THREE_PLAYERS_GAME_COALITION_PAYOFFS_MOCK) {
+    const coalitionKey = Array.from(coalitionPlayoff[0]).sort().join(',');
+    gamePayoffs[coalitionKey] = coalitionPlayoff[1];
+    csvString += `\n${coalitionKey};${coalitionPlayoff[1]}`
+    badFormatDelimiterCsvString += `\n${coalitionKey},${coalitionPlayoff[1]}`
+}
 
 export const THREE_PLAYERS_GAME_MOCK: IGameStructure = {
     N: N,
-    payoffs: payoffs,
+    payoffs: gamePayoffs,
     v: () => 0
 }
 
-export const THREE_PLAYERS_GAME_CSV_MOCK: string = `
-coalition;payoff
-1;15
-2;10
-3;12
-1,2;30
-1,3;33
-2,3;25
-1,2,3;40
-`;
+export const THREE_PLAYERS_GAME_CSV_MOCK: string = csvString;
+
+export const BAD_FORMAT_DELIMITER_GAME_CSV_MOCK: string = badFormatDelimiterCsvString;

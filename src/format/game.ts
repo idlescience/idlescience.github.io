@@ -1,6 +1,6 @@
 import { parse } from 'csv-parse';
 
-export type Player = number;
+export type Player = number | string;
 
 export type PlayerSet = Set<Player>;
 
@@ -81,19 +81,15 @@ class Game implements IGame {
         let payoff: Payoff;
         if ('coalition' in record && 'payoff' in record) {
             coalition = new Set<Player>(record['coalition'].split(',').map(function (item: string) {
-                try {
-                    return parseInt(item.trim(), 10);
-                } catch (error) {
-                    throw new ParseCsvGameError('coalition column players are not in Integer format.', line, record);
+                const trimmedItem = item.trim();
+                if (trimmedItem.length === 0) {
+                    throw new ParseCsvGameError('coalition column does not contain any valid player.', line, record);
                 }
+                return trimmedItem;
             }));
-            if (coalition.size < 1) {
-                throw new ParseCsvGameError('coalition columns does not contain any valid player in Integer format.', line, record);
-            }
-            try {
-                payoff = parseFloat(record['payoff'].trim());
-            } catch (error) {
-                throw new ParseCsvGameError('payoff does not contain a valid value in Float format.', line, record);
+            payoff = parseFloat(record['payoff'].trim());
+            if (Number.isNaN(payoff)) {
+                throw new ParseCsvGameError('payoff does not contain a valid value in float format.', line, record);
             }
         } else {
             throw new ParseCsvGameError('coalition or payoff column not found.', line, record);

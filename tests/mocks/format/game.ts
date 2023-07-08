@@ -15,13 +15,33 @@ export const THREE_PLAYERS_GAME_COALITION_PAYOFFS_MOCK: CoalitionPayoff[] = [
 const gamePayoffs: GamePayoffs = {};
 let csvString = 'coalition;payoff';
 let badFormatDelimiterCsvString = 'coalition,payoff';
+let badFormatFloatPayoffCsvString = 'coalition;payoff';
+let badFormatEmptyCoalitionCsvString = 'coalition;payoff';
+let replacements = [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+];
 
 for (const coalitionPlayoff of THREE_PLAYERS_GAME_COALITION_PAYOFFS_MOCK) {
     const coalitionKey = Array.from(coalitionPlayoff[0]).sort().join(',');
     gamePayoffs[coalitionKey] = coalitionPlayoff[1];
     csvString += `\n${coalitionKey};${coalitionPlayoff[1]}`
     badFormatDelimiterCsvString += `\n${coalitionKey},${coalitionPlayoff[1]}`
+    badFormatFloatPayoffCsvString += `\n${coalitionKey};${coalitionPlayoff[1].toString().replace(
+        /(\d)/g, (g0, g1) => replacements[parseInt(g1, 10)]
+    )}`;
+    badFormatEmptyCoalitionCsvString += `\n${coalitionKey};${coalitionPlayoff[1]}`
 }
+badFormatEmptyCoalitionCsvString += `\n;100`
+
 
 export const THREE_PLAYERS_GAME_MOCK: IGameStructure = {
     N: N,
@@ -32,3 +52,7 @@ export const THREE_PLAYERS_GAME_MOCK: IGameStructure = {
 export const THREE_PLAYERS_GAME_CSV_MOCK: string = csvString;
 
 export const BAD_FORMAT_DELIMITER_GAME_CSV_MOCK: string = badFormatDelimiterCsvString;
+
+export const BAD_FORMAT_FLOAT_PAYOFF_GAME_CSV_MOCK: string = badFormatFloatPayoffCsvString;
+
+export const BAD_FORMAT_EMPTY_COALITION_GAME_CSV_MOCK: string = badFormatEmptyCoalitionCsvString;

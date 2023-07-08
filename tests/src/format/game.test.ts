@@ -11,25 +11,25 @@ import {
 const fromCsvTestTimeout = 20000;
 
 describe('Game class', () => {
-    xit('empty construtor creates an empty game', () => {
+    it('empty construtor creates an empty game', () => {
         const game = new Game();
         expect(game.N.size).toBe(0);
         expect(Object.keys(game.payoffs)).toHaveLength(0);
     });
 
-    xit('construtor creates a game with n = 3 players and (2 ^ n) - 1 = 7 coalitions', () => {
+    it('construtor creates a game with n = 3 players and (2 ^ n) - 1 = 7 coalitions', () => {
         const game = new Game(THREE_PLAYERS_GAME_MOCK.N, THREE_PLAYERS_GAME_MOCK.payoffs);
         expect(game.N.size).toBe(THREE_PLAYERS_GAME_MOCK.N.size);
         expect(Object.keys(game.payoffs)).toHaveLength(Object.keys(THREE_PLAYERS_GAME_MOCK.payoffs).length);
     });
 
-    xit('fromCsvString return a game with n = 3 players and (2 ^ n) - 1 = 7 coalitions', async () => {
+    it('fromCsvString return a game with n = 3 players and (2 ^ n) - 1 = 7 coalitions', async () => {
         const game = await (new Game()).fromCsvString(THREE_PLAYERS_GAME_CSV_MOCK);
         expect(game.N.size).toBe(THREE_PLAYERS_GAME_MOCK.N.size);
         expect(Object.keys(game.payoffs)).toHaveLength(Object.keys(THREE_PLAYERS_GAME_MOCK.payoffs).length);
     }, fromCsvTestTimeout);
 
-    xit('fromCsvString assigns proper coalition values', async () => {
+    it('fromCsvString assigns proper coalition values', async () => {
         const game = await (new Game()).fromCsvString(THREE_PLAYERS_GAME_CSV_MOCK);
 
         for (const coalitionPlayoff of THREE_PLAYERS_GAME_COALITION_PAYOFFS_MOCK) {
@@ -70,7 +70,7 @@ describe('Game class', () => {
         }
     }, fromCsvTestTimeout);
 
-    xit('fromCsvString should rise error when a bad column delimiter is used', async () => {
+    it('fromCsvString should rise error when a bad column delimiter is used', async () => {
         expect.assertions(3);
 
         try {
@@ -82,7 +82,7 @@ describe('Game class', () => {
         }
     }, fromCsvTestTimeout);
 
-    xit('fromCsvString should rise error when payoffs are of type different from float', async () => {
+    it('fromCsvString should rise error when payoffs are of type different from float', async () => {
         expect.assertions(3);
 
         try {
@@ -94,7 +94,7 @@ describe('Game class', () => {
         }
     }, fromCsvTestTimeout);
 
-    xit('fromCsvString should rise error when some coalition has no players', async () => {
+    it('fromCsvString should rise error when some coalition has no players', async () => {
         expect.assertions(3);
 
         try {

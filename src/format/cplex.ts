@@ -45,7 +45,7 @@ End
 
         for (let i = 1; i <= 2 ** (n) - 2; i++) {
             const coalition = game.B[i - 1];
-            const players = Array.from(coalition);
+            const players = Array.from(coalition).sort();
             let playersPayoffSumString = '';
             for (let j = 0; j < players.length; j++) {
                 playersPayoffSumString += `x${players[j]} - `;

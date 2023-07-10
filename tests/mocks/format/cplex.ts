@@ -25,10 +25,9 @@ export const LPP_SIGMA_MOCK: number = 0.1;
 
 const n = N.size;
 
-export const THREE_PLAYERS_GAME_LPP_MOCK: string = `Minimize
-    obj: 0.9 t1 + 0.9 d11 + 0.9 d21 + 0.9 d31 + 0.9 d41 + 0.9 d51 + 0.9 d61 + 0.18 t2 + 0.09 d12 + 0.09 d22 + 0.09 d32 + 0.09 d42 + 0.09 d52 + 0.09 d62 + 0.027 t3 + 0.009 d13 + 0.009 d23 + 0.009 d33 + 0.009 d43 + 0.009 d53 + 0.009 d63 + 0.0036 t4 + 0.0009 d14 + 0.0009 d24 + 0.0009 d34 + 0.0009 d44 + 0.0009 d54 + 0.0009 d64 + 0.00045 t5 + 0.00009 d15 + 0.00009 d25 + 0.00009 d35 + 0.00009 d45 + 0.00009 d55 + 0.00009 d65 + 0.000054 t6 + 0.000009 d16 + 0.000009 d26 + 0.000009 d36 + 0.000009 d46 + 0.000009 d56 + 0.000009 d66
-Subject To
-    c1: d11 >= theta1 - t1
+export const THREE_PLAYERS_GAME_LPP_OBJECTIVE_MOCK: string = '0.9 t1 + 0.9 d11 + 0.9 d21 + 0.9 d31 + 0.9 d41 + 0.9 d51 + 0.9 d61 + 0.18 t2 + 0.09 d12 + 0.09 d22 + 0.09 d32 + 0.09 d42 + 0.09 d52 + 0.09 d62 + 0.027 t3 + 0.009 d13 + 0.009 d23 + 0.009 d33 + 0.009 d43 + 0.009 d53 + 0.009 d63 + 0.0036 t4 + 0.0009 d14 + 0.0009 d24 + 0.0009 d34 + 0.0009 d44 + 0.0009 d54 + 0.0009 d64 + 0.00045 t5 + 0.00009 d15 + 0.00009 d25 + 0.00009 d35 + 0.00009 d45 + 0.00009 d55 + 0.00009 d65 + 0.000054 t6 + 0.000009 d16 + 0.000009 d26 + 0.000009 d36 + 0.000009 d46 + 0.000009 d56 + 0.000009 d66'
+
+export const THREE_PLAYERS_GAME_LPP_CONTRAINTS_MOCK: string = `    c1: d11 >= theta1 - t1
     c2: d12 >= theta1 - t2
     c3: d13 >= theta1 - t3
     c4: d14 >= theta1 - t4
@@ -70,9 +69,9 @@ Subject To
     c40: theta4 = 30 - x1 - x2
     c41: theta5 = 33 - x1 - x3
     c42: theta6 = 28 - x2 - x3
-    c43: x1 + x2 + x3 = 40
-Bounds
-    d11 >= 0
+    c43: x1 + x2 + x3 = 40`
+
+export const THREE_PLAYERS_GAME_LPP_BOUNDS_MOCK = `    d11 >= 0
     d12 >= 0
     d13 >= 0
     d14 >= 0
@@ -107,5 +106,12 @@ Bounds
     d63 >= 0
     d64 >= 0
     d65 >= 0
-    d66 >= 0
+    d66 >= 0`
+
+export const THREE_PLAYERS_GAME_LPP_MOCK: string = `Minimize
+    obj: ${THREE_PLAYERS_GAME_LPP_OBJECTIVE_MOCK}
+Subject To
+${THREE_PLAYERS_GAME_LPP_CONTRAINTS_MOCK}
+Bounds
+${THREE_PLAYERS_GAME_LPP_BOUNDS_MOCK}
 End`;

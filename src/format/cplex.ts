@@ -14,8 +14,8 @@ Subject To
 {{CONSTRAINTS}}
 Bounds
 {{BOUNDS}}
-End
-`
+End`;
+
     public gameObjectiveFunction = (game: IGame, sigma: number): string => {
         let result: string = '';
         let n = game.N.size;
@@ -55,7 +55,27 @@ End
             result += `    c${((2 ** (n) - 2) ** 2) + i}: theta${i} = ${vSi} - ${playersPayoffSumString}\n`;
         }
 
-        return result.substring(0,  result.lastIndexOf('\n'));
+        result += `    c${((2 ** (n) - 2) ** 2) + (2 ** (n) - 1)}: `;
+        for (let i = 1; i <= n; i++) {
+            result += `x${i} + `;
+        }
+        result = result.replace(/ \+ $/, '');
+        result += ` = ${game.v(game.N)}`;
+
+        return result;
+    }
+
+    public gameBounds = (game: IGame): string => {
+        let result: string = '';
+        let n = game.N.size;
+
+        for (let i = 1; i <= 2 ** (n) - 2; i++) {
+            for (let k = 1; k <= 2 ** (n) - 2; k++) {
+                result += `    d${i}${k} >= 0\n`;
+            }
+        }
+
+        return result.substring(0, result.lastIndexOf('\n'));
     }
 
     public fromGame(game: IGame, sigma: number): LP {
@@ -66,7 +86,7 @@ End
         ).replace(
             '{{CONSTRAINTS}}', this.gameConstraints(game)
         ).replace(
-            '{{BOUNDS}}', ''
+            '{{BOUNDS}}', this.gameBounds(game)
         );
     }
 }

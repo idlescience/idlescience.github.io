@@ -1,6 +1,6 @@
 import Game, { ParseCsvGameError } from '../../../src/format/game';
 import {
-    THREE_PLAYERS_GAME_MOCK,
+    THREE_PLAYERS_GAME_STRUCTURE_MOCK,
     THREE_PLAYERS_GAME_CSV_MOCK,
     THREE_PLAYERS_GAME_COALITION_PAYOFFS_MOCK,
     BAD_FORMAT_DELIMITER_GAME_CSV_MOCK,
@@ -18,15 +18,15 @@ describe('Game class', () => {
     });
 
     it('construtor creates a game with n = 3 players and (2 ^ n) - 1 = 7 coalitions', () => {
-        const game = new Game(THREE_PLAYERS_GAME_MOCK.N, THREE_PLAYERS_GAME_MOCK.payoffs);
-        expect(game.N.size).toBe(THREE_PLAYERS_GAME_MOCK.N.size);
-        expect(Object.keys(game.payoffs)).toHaveLength(Object.keys(THREE_PLAYERS_GAME_MOCK.payoffs).length);
+        const game = new Game(THREE_PLAYERS_GAME_STRUCTURE_MOCK.N, THREE_PLAYERS_GAME_STRUCTURE_MOCK.payoffs);
+        expect(game.N.size).toBe(THREE_PLAYERS_GAME_STRUCTURE_MOCK.N.size);
+        expect(Object.keys(game.payoffs)).toHaveLength(Object.keys(THREE_PLAYERS_GAME_STRUCTURE_MOCK.payoffs).length);
     });
 
     it('fromCsvString return a game with n = 3 players and (2 ^ n) - 1 = 7 coalitions', async () => {
         const game = await (new Game()).fromCsvString(THREE_PLAYERS_GAME_CSV_MOCK);
-        expect(game.N.size).toBe(THREE_PLAYERS_GAME_MOCK.N.size);
-        expect(Object.keys(game.payoffs)).toHaveLength(Object.keys(THREE_PLAYERS_GAME_MOCK.payoffs).length);
+        expect(game.N.size).toBe(THREE_PLAYERS_GAME_STRUCTURE_MOCK.N.size);
+        expect(Object.keys(game.payoffs)).toHaveLength(Object.keys(THREE_PLAYERS_GAME_STRUCTURE_MOCK.payoffs).length);
     }, fromCsvTestTimeout);
 
     it('fromCsvString assigns proper coalition values', async () => {

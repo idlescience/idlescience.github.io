@@ -43,7 +43,7 @@ for (const coalitionPlayoff of THREE_PLAYERS_GAME_COALITION_PAYOFFS_MOCK) {
 badFormatEmptyCoalitionCsvString += `\n;100`
 
 
-export const THREE_PLAYERS_GAME_MOCK: IGameStructure = {
+export const THREE_PLAYERS_GAME_STRUCTURE_MOCK: IGameStructure = {
     N: N,
     payoffs: gamePayoffs,
     v: () => 0

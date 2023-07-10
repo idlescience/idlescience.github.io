@@ -14,6 +14,7 @@ export type CharacteristicFunction = (S: PlayerSet) => Payoff;
 
 export interface IGameStructure {
     N: PlayerSet,
+    B: PlayerSet[],
     v: CharacteristicFunction,
     payoffs: GamePayoffs,
 }
@@ -38,6 +39,7 @@ export class ParseCsvGameError extends Error {
 
 class Game implements IGame {
     protected _N: PlayerSet = new Set<Player>();
+    protected _B: PlayerSet[] = [];
     protected _payoffs: GamePayoffs = {};
 
     protected readonly _v: CharacteristicFunction = (S: PlayerSet): Payoff => {
@@ -51,6 +53,27 @@ class Game implements IGame {
 
     set N(NQuote: PlayerSet) {
         this._N = NQuote;
+    }
+
+    get B() {
+        const fn = (active: Player[], remaining: Player[], result: PlayerSet[]) => {
+            if (!active.length && !remaining.length)
+                return;
+            if (!remaining.length) {
+                result.push(new Set(active));
+            } else {
+                fn([...active, remaining[0]], remaining.slice(1), result);
+                fn(active, remaining.slice(1), result);
+            }
+            return result;
+        }
+        let result = fn([], Array.from(this._N), []) ?? [];
+        result = result.sort((a: PlayerSet, b: PlayerSet) => a.size - b.size);
+        return result;
+    }
+
+    set B(BQuote: PlayerSet[]) {
+        this._B = BQuote;
     }
 
     get payoffs(): GamePayoffs {

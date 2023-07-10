@@ -24,20 +24,50 @@ End
             const lambda_k: number = sigma ** (k - 1);
             const lambda_k_plus_one: number = sigma ** (k);
             const lambda_diff = lambda_k - lambda_k_plus_one;
-            result += `${lambda_diff * k} t${k} + `;
-            for (let i = 0; i < 2 ** (n) - 2; i++) {
-                result += `${lambda_diff} d${i}${k} + `;
+            result += `${(lambda_diff * k).toFixed(k)} t${k} + `;
+            for (let i = 1; i <= 2 ** (n) - 2; i++) {
+                result += `${lambda_diff.toFixed(k)} d${i}${k} + `;
             }
-            result = result.replace(/ + $/, '');
         }
 
-        return result;
+        return result.replace(/ \+ $/, '');
+    }
+
+    public gameConstraints = (game: IGame): string => {
+        let result: string = '';
+        let n = game.N.size;
+
+        for (let i = 1; i <= 2 ** (n) - 2; i++) {
+            for (let k = 1; k <= 2 ** (n) - 2; k++) {
+                result += `    c${((2 ** (n) - 2) * (i - 1)) + k}: d${i}${k} >= theta${i} - t${k}\n`;
+            }
+        }
+
+        for (let i = 1; i <= 2 ** (n) - 2; i++) {
+            const coalition = game.B[i - 1];
+            const players = Array.from(coalition);
+            let playersPayoffSumString = '';
+            for (let j = 0; j < players.length; j++) {
+                playersPayoffSumString += `x${players[j]} - `;
+            }
+            playersPayoffSumString = playersPayoffSumString.replace(/ - $/, '');
+            const vSi = game.v(coalition);
+            result += `    c${((2 ** (n) - 2) ** 2) + i}: theta${i} = ${vSi} - ${playersPayoffSumString}\n`;
+        }
+
+        return result.substring(0,  result.lastIndexOf('\n'));
     }
 
     public fromGame(game: IGame, sigma: number): LP {
-        let objectiveFunction: string = this.gameObjectiveFunction(game, sigma);
-
-        return this._lpTemplate.replace('{{FUNCTION}}', objectiveFunction);
+        return this._lpTemplate.replace(
+            '{{DIRECTION}}', 'Minimize'
+        ).replace(
+            '{{FUNCTION}}', this.gameObjectiveFunction(game, sigma)
+        ).replace(
+            '{{CONSTRAINTS}}', this.gameConstraints(game)
+        ).replace(
+            '{{BOUNDS}}', ''
+        );
     }
 }
 

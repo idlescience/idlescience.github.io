@@ -1,6 +1,15 @@
 import { CoalitionPayoff, GamePayoffs, IGameStructure, Player, PlayerSet } from '../../../src/format/game';
 
 const N: PlayerSet = new Set<Player>([1, 2, 3]);
+const B: PlayerSet[] = [
+    new Set<Player>([1]),
+    new Set<Player>([2]),
+    new Set<Player>([3]),
+    new Set<Player>([1, 2]),
+    new Set<Player>([1, 3]),
+    new Set<Player>([2, 3]),
+    new Set<Player>([1, 2, 3]),
+];
 
 export const THREE_PLAYERS_GAME_COALITION_PAYOFFS_MOCK: CoalitionPayoff[] = [
     [new Set<Player>([1]), 15],
@@ -45,6 +54,7 @@ badFormatEmptyCoalitionCsvString += `\n;100`
 
 export const THREE_PLAYERS_GAME_STRUCTURE_MOCK: IGameStructure = {
     N: N,
+    B: B,
     payoffs: gamePayoffs,
     v: () => 0
 }

@@ -10,19 +10,7 @@ import {
 
 const fromCsvTestTimeout = 20000;
 
-describe('Game class', () => {
-    it('empty construtor creates an empty game', () => {
-        const game = new Game();
-        expect(game.N.size).toBe(0);
-        expect(Object.keys(game.payoffs)).toHaveLength(0);
-    });
-
-    it('construtor creates a game with n = 3 players and (2 ^ n) - 1 = 7 coalitions', () => {
-        const game = new Game(THREE_PLAYERS_GAME_STRUCTURE_MOCK.N, THREE_PLAYERS_GAME_STRUCTURE_MOCK.payoffs);
-        expect(game.N.size).toBe(THREE_PLAYERS_GAME_STRUCTURE_MOCK.N.size);
-        expect(Object.keys(game.payoffs)).toHaveLength(Object.keys(THREE_PLAYERS_GAME_STRUCTURE_MOCK.payoffs).length);
-    });
-
+describe('When using Game class as an parser then', () => {
     it('fromCsvString return a game with n = 3 players and (2 ^ n) - 1 = 7 coalitions', async () => {
         const game = await (new Game()).fromCsvString(THREE_PLAYERS_GAME_CSV_MOCK);
         expect(game.N.size).toBe(THREE_PLAYERS_GAME_STRUCTURE_MOCK.N.size);
@@ -105,4 +93,23 @@ describe('Game class', () => {
             expect(error.message).toMatch(/coalition column does not contain any valid player/i);
         }
     }, fromCsvTestTimeout);
+});
+
+describe('When using Game class as an structure then', () => {
+    it('empty construtor creates an empty game', () => {
+        const game = new Game();
+        expect(game.N.size).toBe(0);
+        expect(Object.keys(game.payoffs)).toHaveLength(0);
+    });
+
+    it('construtor creates a game with n = 3 players and (2 ^ n) - 1 = 7 coalitions', () => {
+        const game = new Game(THREE_PLAYERS_GAME_STRUCTURE_MOCK.N, THREE_PLAYERS_GAME_STRUCTURE_MOCK.payoffs);
+        expect(game.N.size).toBe(THREE_PLAYERS_GAME_STRUCTURE_MOCK.N.size);
+        expect(Object.keys(game.payoffs)).toHaveLength(Object.keys(THREE_PLAYERS_GAME_STRUCTURE_MOCK.payoffs).length);
+    });
+
+    it('getPartitions should return a posible players combinations', () => {
+        const game = new Game(THREE_PLAYERS_GAME_STRUCTURE_MOCK.N, THREE_PLAYERS_GAME_STRUCTURE_MOCK.payoffs);
+        expect(game.B).toHaveLength(THREE_PLAYERS_GAME_STRUCTURE_MOCK.B.length);
+    });
 });

@@ -1,0 +1,17 @@
+.build/
+.vscode/
+_includes/
+_layouts/
+_pages/
+_posts/
+_sass/
+_site/
+assets/
+node_modules/
+public/
+.editorconfig
+.prettierrc.json
+.env.example
+.gitignore
+README.md
+yarn.lock

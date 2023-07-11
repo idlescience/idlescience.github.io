@@ -20,30 +20,30 @@ End`;
         let result: string = '';
         let n = game.N.size;
 
-        for (let k = 1; k <= 2 ** (n) - 2; k++) {
+        for (let k = 1; k <= 2 ** n - 2; k++) {
             const lambda_k: number = sigma ** (k - 1);
-            const lambda_k_plus_one: number = sigma ** (k);
+            const lambda_k_plus_one: number = sigma ** k;
             const lambda_diff = lambda_k - lambda_k_plus_one;
             result += `${(lambda_diff * k).toFixed(k)} t${k} + `;
-            for (let i = 1; i <= 2 ** (n) - 2; i++) {
+            for (let i = 1; i <= 2 ** n - 2; i++) {
                 result += `${lambda_diff.toFixed(k)} d${i}${k} + `;
             }
         }
 
         return result.replace(/ \+ $/, '');
-    }
+    };
 
     public gameConstraints = (game: IGame): string => {
         let result: string = '';
         let n = game.N.size;
 
-        for (let i = 1; i <= 2 ** (n) - 2; i++) {
-            for (let k = 1; k <= 2 ** (n) - 2; k++) {
-                result += `    c${((2 ** (n) - 2) * (i - 1)) + k}: d${i}${k} >= theta${i} - t${k}\n`;
+        for (let i = 1; i <= 2 ** n - 2; i++) {
+            for (let k = 1; k <= 2 ** n - 2; k++) {
+                result += `    c${(2 ** n - 2) * (i - 1) + k}: d${i}${k} >= theta${i} - t${k}\n`;
             }
         }
 
-        for (let i = 1; i <= 2 ** (n) - 2; i++) {
+        for (let i = 1; i <= 2 ** n - 2; i++) {
             const coalition = game.B[i - 1];
             const players = Array.from(coalition).sort();
             let playersPayoffSumString = '';
@@ -52,10 +52,10 @@ End`;
             }
             playersPayoffSumString = playersPayoffSumString.replace(/ - $/, '');
             const vSi = game.v(coalition);
-            result += `    c${((2 ** (n) - 2) ** 2) + i}: theta${i} = ${vSi} - ${playersPayoffSumString}\n`;
+            result += `    c${(2 ** n - 2) ** 2 + i}: theta${i} = ${vSi} - ${playersPayoffSumString}\n`;
         }
 
-        result += `    c${((2 ** (n) - 2) ** 2) + (2 ** (n) - 1)}: `;
+        result += `    c${(2 ** n - 2) ** 2 + (2 ** n - 1)}: `;
         for (let i = 1; i <= n; i++) {
             result += `x${i} + `;
         }
@@ -63,31 +63,27 @@ End`;
         result += ` = ${game.v(game.N)}`;
 
         return result;
-    }
+    };
 
     public gameBounds = (game: IGame): string => {
         let result: string = '';
         let n = game.N.size;
 
-        for (let i = 1; i <= 2 ** (n) - 2; i++) {
-            for (let k = 1; k <= 2 ** (n) - 2; k++) {
+        for (let i = 1; i <= 2 ** n - 2; i++) {
+            for (let k = 1; k <= 2 ** n - 2; k++) {
                 result += `    d${i}${k} >= 0\n`;
             }
         }
 
         return result.substring(0, result.lastIndexOf('\n'));
-    }
+    };
 
     public fromGame(game: IGame, sigma: number): LP {
-        return this._lpTemplate.replace(
-            '{{DIRECTION}}', 'Minimize'
-        ).replace(
-            '{{FUNCTION}}', this.gameObjectiveFunction(game, sigma)
-        ).replace(
-            '{{CONSTRAINTS}}', this.gameConstraints(game)
-        ).replace(
-            '{{BOUNDS}}', this.gameBounds(game)
-        );
+        return this._lpTemplate
+            .replace('{{DIRECTION}}', 'Minimize')
+            .replace('{{FUNCTION}}', this.gameObjectiveFunction(game, sigma))
+            .replace('{{CONSTRAINTS}}', this.gameConstraints(game))
+            .replace('{{BOUNDS}}', this.gameBounds(game));
     }
 }
 

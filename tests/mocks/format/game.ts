@@ -26,38 +26,26 @@ let csvString = 'coalition;payoff';
 let badFormatDelimiterCsvString = 'coalition,payoff';
 let badFormatFloatPayoffCsvString = 'coalition;payoff';
 let badFormatEmptyCoalitionCsvString = 'coalition;payoff';
-let replacements = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-];
+let replacements = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 
 for (const coalitionPlayoff of THREE_PLAYERS_GAME_COALITION_PAYOFFS_MOCK) {
     const coalitionKey = Array.from(coalitionPlayoff[0]).sort().join(',');
     gamePayoffs[coalitionKey] = coalitionPlayoff[1];
-    csvString += `\n${coalitionKey};${coalitionPlayoff[1]}`
-    badFormatDelimiterCsvString += `\n${coalitionKey},${coalitionPlayoff[1]}`
-    badFormatFloatPayoffCsvString += `\n${coalitionKey};${coalitionPlayoff[1].toString().replace(
-        /(\d)/g, (g0, g1) => replacements[parseInt(g1, 10)]
-    )}`;
-    badFormatEmptyCoalitionCsvString += `\n${coalitionKey};${coalitionPlayoff[1]}`
+    csvString += `\n${coalitionKey};${coalitionPlayoff[1]}`;
+    badFormatDelimiterCsvString += `\n${coalitionKey},${coalitionPlayoff[1]}`;
+    badFormatFloatPayoffCsvString += `\n${coalitionKey};${coalitionPlayoff[1]
+        .toString()
+        .replace(/(\d)/g, (g0, g1) => replacements[parseInt(g1, 10)])}`;
+    badFormatEmptyCoalitionCsvString += `\n${coalitionKey};${coalitionPlayoff[1]}`;
 }
-badFormatEmptyCoalitionCsvString += `\n;100`
-
+badFormatEmptyCoalitionCsvString += `\n;100`;
 
 export const THREE_PLAYERS_GAME_STRUCTURE_MOCK: IGameStructure = {
     N: N,
     B: B,
     payoffs: gamePayoffs,
-    v: () => 0
-}
+    v: () => 0,
+};
 
 export const THREE_PLAYERS_GAME_CSV_MOCK: string = csvString;
 

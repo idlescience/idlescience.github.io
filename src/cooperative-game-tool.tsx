@@ -1,12 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import highs, { Highs, HighsSolution } from 'highs';
-import Button from '@mui/material/Button';
 
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 import Game from './format/game';
 import Cplex from './format/cplex';
 
@@ -17,6 +12,8 @@ function App() {
 
     const solveProblem = useCallback(() => {
         if (highsInstance && problem) {
+            console.log('Solving problem:');
+            console.log(problem);
             const result = highsInstance.solve(problem, {
                 presolve: 'on',
                 parallel: 'off',
@@ -28,7 +25,8 @@ function App() {
     const onGameUpdate = useCallback(
         async (gameCsv: string) => {
             const game = await new Game().fromCsvString(gameCsv);
-            setProblem(new Cplex().fromGame(game, 0.1));
+            const lpProblem = new Cplex().fromGame(game, 0.1);
+            setProblem(lpProblem);
         },
         [setProblem]
     );
@@ -60,9 +58,9 @@ function App() {
                 </textarea>
             </div>
             <div>
-                <Button variant="contained" onClick={solveProblem}>
+                <button type="button" className="btn btn-primary" onClick={solveProblem}>
                     Solve
-                </Button>
+                </button>
             </div>
             <div
                 style={{

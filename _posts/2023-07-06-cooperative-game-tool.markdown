@@ -15,8 +15,6 @@ To do so please define your game in CSV format in the region right after the exa
 
 #### Example representation of CSV
 
-<div style="margin-left: auto; margin-right: auto; width: 25%">
-
 | coalition | payoff |
 |   :---:   |  :---: |
 |     1     |   10   |
@@ -27,7 +25,6 @@ To do so please define your game in CSV format in the region right after the exa
 |   2, 3    |   42   |
 |  1, 2, 3  |   50   |
 
-</div>
 
 #### Definition {#solution}
 

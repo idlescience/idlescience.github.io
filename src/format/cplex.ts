@@ -38,26 +38,23 @@ End`;
         let result: string = '';
         const n = game.N.size;
         kMax = kMax || 2 ** n - 2;
-
-        for (let i = 1; i <= 2 ** n - 2; i++) {
-            for (let k = 1; k <= kMax; k++) {
-                result += `    c${(2 ** n - 2) * (i - 1) + k}: d${i}${k} - theta${i} + t${k} >= 0\n`;
-            }
-        }
-
+        let l = 1;
         for (let i = 1; i <= 2 ** n - 2; i++) {
             const coalition = game.B[i - 1];
             const players = Array.from(coalition).sort();
             let playersPayoffSumString = '';
             for (let j = 0; j < players.length; j++) {
-                playersPayoffSumString += `x${players[j]} + `;
+                playersPayoffSumString += `x${players[j]} - `;
             }
-            playersPayoffSumString = playersPayoffSumString.replace(/ \+ $/, '');
+            playersPayoffSumString = playersPayoffSumString.replace(/ - $/, '');
             const vSi = game.v(coalition);
-            result += `    c${(2 ** n - 2) ** 2 + i}: theta${i} + ${playersPayoffSumString} - ${vSi} = 0\n`;
+            const theta_i = `${vSi} - ${playersPayoffSumString}`;
+            for (let k = 1; k <= kMax; k++) {
+                result += `    c${l++}: d${i}${k} - ${theta_i} + t${k} >= 0\n`;
+            }
         }
 
-        result += `    c${(2 ** n - 2) ** 2 + (2 ** n - 1)}: `;
+        result += `    c${l}: `;
         for (let i = 1; i <= n; i++) {
             result += `x${i} + `;
         }

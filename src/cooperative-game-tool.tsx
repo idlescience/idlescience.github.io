@@ -6,6 +6,16 @@ import Game from './format/game';
 import Cplex from './format/cplex';
 
 function App() {
+    const csvSample = `coalition;payoff
+1;10
+2;15
+3;12
+1,2;40
+1,3;35
+2,3;42
+1,2,3;50`;
+    const [kMax, setKMax] = useState<number | undefined>();
+    const [sigma, setSigma] = useState<number>(0.1);
     const [problem, setProblem] = useState<string>();
     const [solution, setSolution] = useState<HighsSolution>();
     const [highsInstance, setHighsInstance] = useState<Highs>();
@@ -25,10 +35,10 @@ function App() {
     const onGameUpdate = useCallback(
         async (gameCsv: string) => {
             const game = await new Game().fromCsvString(gameCsv);
-            const lpProblem = new Cplex().fromGame(game, 0.1);
+            const lpProblem = new Cplex().fromGame(game, sigma, kMax);
             setProblem(lpProblem);
         },
-        [setProblem]
+        [setProblem, kMax, sigma]
     );
 
     useEffect(() => {
@@ -54,13 +64,21 @@ function App() {
                         marginRight: 'auto',
                     }}
                 >
-                    S;v 1;10 2;15 3;12 1,2;40 1,3;35 2,3;42 1,2,3;50
+                    {csvSample}
                 </textarea>
             </div>
-            <div>
-                <button type="button" className="btn btn-primary" onClick={solveProblem}>
-                    Solve
-                </button>
+            <div className="row">
+                <div>
+                    <label>
+                        <input type="number" onChange={(e) => setSigma(parseFloat(e.target.value))} placeholder='0.1' />
+                    </label>
+                    <label>
+                        <input type="number" onChange={(e) => setKMax(parseInt(e.target.value))} placeholder='Maximum k value' />
+                    </label>
+                    <button type="button" className="btn btn-primary" onClick={solveProblem}>
+                        Solve
+                    </button>
+                </div>
             </div>
             <div
                 style={{

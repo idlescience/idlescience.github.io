@@ -7,13 +7,13 @@ import Cplex from './format/cplex';
 
 function App() {
     const [csv, setCsv] = useState<string>(`coalition;payoff
-1;10
-2;15
-3;12
-1,2;40
-1,3;35
-2,3;42
-1,2,3;50`);
+1;2
+2;5
+3;4
+1,2;14
+1,3;18
+2,3;9
+1,2,3;24`);
     const [kMax, setKMax] = useState<number | undefined>();
     const [sigma, setSigma] = useState<number>(0.1);
     const [solution, setSolution] = useState<HighsSolution>();

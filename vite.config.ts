@@ -62,7 +62,10 @@ export default defineConfig({
     },
     build: {
         lib: {
-            entry: [resolve(__dirname, 'src/page/cooperative-game-tool.tsx'), resolve(__dirname, 'src/nucleolus-in-f1.tsx')],
+            entry: [
+                resolve(__dirname, 'src/page/cooperative-game-tool.tsx'),
+                resolve(__dirname, 'src/page/nucleolus-in-f1.tsx'),
+            ],
             name: 'idlescience',
             formats: ['es'],
             fileName: '[name]',

@@ -5,6 +5,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
 import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
 import rollupNodePolyFill from 'rollup-plugin-node-polyfills';
+import { globSync } from 'glob';
 
 export default defineConfig({
     plugins: [react(), tsconfigPaths()],
@@ -62,10 +63,7 @@ export default defineConfig({
     },
     build: {
         lib: {
-            entry: [
-                resolve(__dirname, 'src/page/cooperative-game-tool.tsx'),
-                resolve(__dirname, 'src/page/nucleolus-in-f1.tsx'),
-            ],
+            entry: globSync(`${resolve(__dirname, 'src/page')}/*.tsx`),
             name: 'idlescience',
             formats: ['es'],
             fileName: '[name]',

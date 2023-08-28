@@ -1,15 +1,17 @@
 import { Decimal } from 'decimal.js';
 
 import { IGame } from '../business/game';
-import { IGameFormatter } from './game-formatter';
 
 export type LP = string;
 
 export interface ICplex {
     gameObjectiveFunction: (game: IGame, sigma: number) => string;
+    gameConstraints: (game: IGame, kMax: number) => string;
+    gameBounds: (game: IGame, kMax: number) => string;
+    toString: (game: IGame, sigma: number, kMax: number) => LP;
 }
 
-class Cplex implements ICplex, IGameFormatter {
+class Cplex implements ICplex {
     private _lpTemplate = `{{DIRECTION}}
     obj: {{FUNCTION}}
 Subject To
@@ -87,7 +89,7 @@ End`;
         return result.substring(0, result.lastIndexOf('\n'));
     };
 
-    public fromGame(game: IGame, sigma: number | undefined = undefined, kMax: number | undefined = undefined): LP {
+    public toString(game: IGame, sigma: number | undefined = undefined, kMax: number | undefined = undefined): LP {
         return this._lpTemplate
             .replace('{{DIRECTION}}', 'Minimize')
             .replace('{{FUNCTION}}', this.gameObjectiveFunction(game, sigma, kMax))

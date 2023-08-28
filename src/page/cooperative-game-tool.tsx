@@ -2,8 +2,8 @@ import React, { useEffect, useState, useCallback } from 'react';
 import ReactDOM from 'react-dom/client';
 import highs, { Highs, HighsSolution } from 'highs';
 
-import Game from './format/game';
-import Cplex from './format/cplex';
+import Game from '../business/game';
+import Cplex from '../mapper/cplex';
 
 function App() {
     const [csv, setCsv] = useState<string>(`coalition;payoff

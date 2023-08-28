@@ -1,15 +1,15 @@
 import { Decimal } from 'decimal.js';
 
-import { IGame } from './game';
+import { IGame } from '../business/game';
+import { IGameFormatter } from './game-formatter';
 
 export type LP = string;
 
 export interface ICplex {
-    fromGame: (game: IGame, sigma: number) => LP;
     gameObjectiveFunction: (game: IGame, sigma: number) => string;
 }
 
-class Cplex implements ICplex {
+class Cplex implements ICplex, IGameFormatter {
     private _lpTemplate = `{{DIRECTION}}
     obj: {{FUNCTION}}
 Subject To
@@ -18,10 +18,11 @@ Bounds
 {{BOUNDS}}
 End`;
 
-    public gameObjectiveFunction = (game: IGame, sigma: number, kMax: number | undefined = undefined): string => {
+    public gameObjectiveFunction = (game: IGame, sigma: number | undefined = undefined, kMax: number | undefined = undefined): string => {
         let result: string = '';
         const n = game.N.size;
         kMax = kMax || 2 ** n - 2;
+        sigma = sigma || 0.5;
 
         for (let k = 1; k <= kMax; k++) {
             const sigmaDec = new Decimal(sigma);
@@ -86,7 +87,7 @@ End`;
         return result.substring(0, result.lastIndexOf('\n'));
     };
 
-    public fromGame(game: IGame, sigma: number, kMax: number | undefined = undefined): LP {
+    public fromGame(game: IGame, sigma: number | undefined = undefined, kMax: number | undefined = undefined): LP {
         return this._lpTemplate
             .replace('{{DIRECTION}}', 'Minimize')
             .replace('{{FUNCTION}}', this.gameObjectiveFunction(game, sigma, kMax))

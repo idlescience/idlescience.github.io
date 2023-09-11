@@ -3,7 +3,6 @@ layout: post
 date: 2023-07-05 07:00:00
 title: Nucleolus solution applied to Formula 1 business
 permalink: /nucleolus-in-f1
-javascript: nucleolus-in-f1.js
 ---
 # Game Theory in Formula 1: Application of the Nucleolus Solution 
 
@@ -52,3 +51,5 @@ Application of the nucleolus solution to such a situation ensures fairness in th
 While the application of the nucleolus solution in Formula 1 may be theoretical, it provides a unique perspective on handling the sport's business aspect. By understanding and considering the dynamics of the sport as a cooperative game, stakeholders can navigate challenges and strike balance and fairness in negotiations and revenue distribution.
 
 Game theory, and the nucleolus solution in particular, provides a mathematical and scientific approach to problem-solving in Formula 1's business sphere, driving a fairer and more balanced future for the sport.
+
+<div id="nucleolus-in-f1-react-app"></div>

@@ -121,9 +121,11 @@ function App() {
     );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('app-root') as HTMLElement);
-root.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>
-);
+const root = document.getElementById('cooperative-game-tool-react-app') as HTMLElement;
+if (!!root) {
+    ReactDOM.createRoot(root).render(
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+    );
+}

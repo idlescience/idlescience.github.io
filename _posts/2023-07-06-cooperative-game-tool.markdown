@@ -1,11 +1,10 @@
 ---
 layout: post
 date: 2023-07-06 07:00:00
-title: Cooperative Game Tool
+title: Cooperative Game Tool Post
 permalink: /cooperative-game-tool
-javascript: cooperative-game-tool.js
 ---
-# Cooperative Game Tool
+# Cooperative Game Tool Post
 
 To solve a cooperative game we must define the game in the CSV definition are. To do so, first, we must enumerate the $n$ players taking part of a Cooperative Game: *player 1*, *player 2*, *player 3*, ..., *player n*.
 
@@ -16,4 +15,4 @@ To do so please define your game in CSV format in the textbox region. This forma
 
 #### Definition {#solution}
 
-<div id="app-root"></div>
+<div id="cooperative-game-tool-react-app"></div>

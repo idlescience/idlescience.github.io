@@ -1,12 +1,12 @@
 ---
-layout: page
-title: About
-permalink: /about/
-order: 3
+layout: default
+title: About Long Haul
+url: /about
 ---
-# Welcome to "Idle Science"
 
-*Your go-to destination for exploring the untapped potential of science in achieving a more equitable and sustainable world.*
+<h1 class="pageTitle">About Idle Science</h1>
+<img src="{{ '/assets/img/touring.jpg' }}" alt="">
+<p class="intro">Your go-to destination for exploring the untapped potential of science in achieving a more equitable and sustainable world.</p>
 
 In an era characterized by profound global challenges such as climate change, social inequalities, and environmental degradation, it is imperative that we harness the power of scientific knowledge and innovation for the betterment of society. However, despite the incredible advancements in scientific research and understanding, there exists a persistent gap between the science available to us and its practical application in addressing critical issues.
 
@@ -19,16 +19,3 @@ By presenting inspiring case studies, successful initiatives, and transformative
 Whether you are a scientist seeking to make your research more accessible and impactful, a policymaker searching for evidence-based solutions, or an engaged citizen looking to understand the role of science in creating a fairer and greener world, our website provides a wealth of knowledge and resources to support your journey.
 
 Join us as we bridge the gap between science and action, encouraging the widespread integration of scientific principles and findings into the realms of social justice, environmental conservation, and sustainable development. Together, let's harness the full potential of science to forge a path towards a future that prioritizes equity, preserves our planet, and safeguards the well-being of all.
-
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
-
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll

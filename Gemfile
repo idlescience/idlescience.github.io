@@ -20,4 +20,7 @@ platforms :jruby do
   gem "http_parser.rb", "~> 0.6.0"
 end
 
+gem "jekyll"
+gem "jekyll-paginate"
+gem "support-for"
 gem "webrick", "~> 1.8"

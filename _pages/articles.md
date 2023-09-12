@@ -2,6 +2,7 @@
 layout: default
 title: Articles
 url: /articles
+order: 1
 ---
 
 <div id="articles">

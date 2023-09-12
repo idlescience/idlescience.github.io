@@ -1,11 +1,12 @@
 ---
 layout: default
-title: About Long Haul
+title: About Idle Science
 url: /about
+order: 3
 ---
 
 <h1 class="pageTitle">About Idle Science</h1>
-<img src="{{ '/assets/img/touring.jpg' }}" alt="">
+<img src="{{ '/assets/img/banner-meeting.jpg' }}" alt="">
 <p class="intro">Your go-to destination for exploring the untapped potential of science in achieving a more equitable and sustainable world.</p>
 
 In an era characterized by profound global challenges such as climate change, social inequalities, and environmental degradation, it is imperative that we harness the power of scientific knowledge and innovation for the betterment of society. However, despite the incredible advancements in scientific research and understanding, there exists a persistent gap between the science available to us and its practical application in addressing critical issues.

@@ -13,11 +13,8 @@ title: Home
                 <a class="post-link" href="{{ post.url }}">{{ post.title }}</a>
             </h3>
             <p>
-                {%- if post.description -%}
-                    {{ post.description }}
-                {%- else -%}
-                    {{ post.excerpt | strip_html }}
-                {%- endif -%}
+                {%- if post.description -%} {{ post.description }} {%- else -%} {{ post.excerpt | strip_html }} {%-
+                endif -%}
             </p>
         </article>
         {%- endfor -%}
@@ -25,10 +22,89 @@ title: Home
     <!-- Pagination links -->
     <div class="pagination">
         {%- if paginator.previous_page -%}
-            <a href="{{ paginator.previous_page_path }}" class="previous button__outline">Newer Posts</a>
+        <a href="{{ paginator.previous_page_path }}" class="previous button__outline">Newer Posts</a>
+        {%- endif -%} {%- if paginator.next_page -%}
+        <a href="{{ paginator.next_page_path }}" class="next button__outline">Older Posts</a>
         {%- endif -%}
-        {%- if paginator.next_page -%}
-            <a href="{{ paginator.next_page_path }}" class="next button__outline">Older Posts</a>
-        {%- endif -%}
+    </div>
+
+    <h1 class="pageTitle">About Idle Science</h1>
+    <p class="intro">
+        Your go-to destination for exploring the untapped potential of science in achieving a more equitable and
+        sustainable world.
+    </p>
+
+    <img src="{{ '/assets/img/banner-meeting.jpg' }}" alt="" />
+
+    <p>
+        In an era characterized by <b>profound global challenges</b> such as climate change, social inequalities, and
+        environmental degradation, it is imperative that we harness the power of scientific knowledge and innovation for
+        the betterment of society. However, despite the incredible advancements in scientific research and
+        understanding, there exists a persistent gap between the science available to us and its practical application
+        in addressing critical issues.
+    </p>
+
+    <p>
+        Our website aims to shed light on this gap and advocate for the utilization of science when it is most needed,
+        for the promotion of equity and sustainability. We believe that science should not remain confined within
+        academic circles or industry laboratories, but should actively inform policies, drive decision-making processes,
+        and inspire collective action.
+    </p>
+
+    <p>
+        Through thought-provoking articles, engaging multimedia content, and interviews with experts, we delve into the
+        root causes of why science is often overlooked or underutilized in the pursuit of equity and sustainability. We
+        explore the intricate dynamics between science, society, and governance, highlighting the systemic barriers that
+        hinder effective science-based solutions from being implemented.
+    </p>
+
+    <p>
+        By presenting inspiring case studies, successful initiatives, and transformative approaches, we showcase the
+        immense potential of science as a catalyst for positive change. Our website serves as a platform for scientists,
+        policymakers, activists, and concerned individuals to come together, exchange ideas, and collaborate towards a
+        more inclusive, just, and sustainable future.
+    </p>
+
+    <p>
+        Whether you are a scientist seeking to make your research more accessible and impactful, a policymaker searching
+        for evidence-based solutions, or an engaged citizen looking to understand the role of science in creating a
+        fairer and greener world, our website provides a wealth of knowledge and resources to support your journey.
+    </p>
+
+    <p>
+        Join us as we bridge the gap between science and action, encouraging the widespread integration of scientific
+        principles and findings into the realms of social justice, environmental conservation, and sustainable
+        development. Together, let's harness the full potential of science to forge a path towards a future that
+        prioritizes equity, preserves our planet, and safeguards the well-being of all.
+    </p>
+
+    <div id="contact">
+        <h1 class="pageTitle">Contact Me</h1>
+        <div class="contactContent">
+            <p class="intro">Welcome to Idle Science's Contact Page!</p>
+            <p>
+                We're thrilled that you've taken an interest in Applied Cooperative Game Theory and its fascinating
+                applications in various scientific domains. At Idle Science, we're committed to making complex theories
+                accessible and engaging for everyone, from academics to curious minds just like yours.
+            </p>
+            <p>
+                Whether you're a researcher looking to collaborate, a student with a burning question, or simply a
+                science enthusiast eager to learn more, we'd love to hear from you. Your questions, comments, and
+                suggestions are invaluable to us as we strive to provide the most accurate and up-to-date content.
+            </p>
+            <p>
+                Please fill out the form below to get in touch with us. We aim to respond to all inquiries within 48
+                hours.
+            </p>
+        </div>
+        <form action="https://formspree.io/f/mwkdqknz" method="POST">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="full-width" /><br />
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" class="full-width" /><br />
+            <label for="message">Message</label>
+            <textarea name="message" id="message" cols="30" rows="10" class="full-width"></textarea><br />
+            <input type="submit" value="Send" class="button" />
+        </form>
     </div>
 </div>

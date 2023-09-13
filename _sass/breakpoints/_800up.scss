@@ -41,7 +41,7 @@ HOMEPAGE STYLING
     .posts,
     .pageTitle,
     .pagination {
-        width: 75%;
+        // width: 75%;
         float: none;
         margin: 0 auto 1.5em;
     }
@@ -56,7 +56,7 @@ HEADER STYLING
 ***************/
 
 .header {
-    height: 15em;
+    height: 10em;
     position: relative;
     padding-bottom: 2em;
 
@@ -64,9 +64,9 @@ HEADER STYLING
         position: relative;
         top: 50%;
         transform: translateY(-50%);
-        max-width: 1320px;
+        max-width: 800px;
         overflow: hidden;
-        background-color: white;
+        // background-color: white;
     }
 
     h1 {
@@ -86,12 +86,12 @@ HEADER STYLING
             li {
                 display: inline;
                 line-height: 3em;
-                background: white;
+                // background: white;
                 padding: 0 5px;
                 border: none;
 
                 a {
-                    color: black;
+                    color: white;
                     font-size: 0.9em;
                     text-decoration: none;
                     padding: 0 0.25em;
@@ -103,7 +103,7 @@ HEADER STYLING
 
                 &.current {
                     padding-bottom: 0.25em;
-                    border-bottom: 4px solid rgba(5, 5, 5, 0.676);
+                    border-bottom: 4px solid rgb(227, 227, 227);
                 }
             }
         }

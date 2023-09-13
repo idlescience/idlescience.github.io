@@ -2,7 +2,6 @@
 layout: post
 date: 2023-07-05 07:00:00
 title: Nucleolus solution applied to Formula 1 business
-permalink: /nucleolus-in-f1
 ---
 # Game Theory in Formula 1: Application of the Nucleolus Solution 
 

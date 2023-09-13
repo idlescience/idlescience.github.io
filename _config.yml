@@ -3,8 +3,8 @@ description: >-
     "Idle Science", your go-to destination for exploring the untapped potential of science in achieving a more equitable and sustainable world.
 
 url: https://blog.idle.science
-paginate_path: 'blog/page:num/'
-permalink: blog/:title/
+paginate_path: /blog/page:num/
+permalink: /blog/:title
 
 sass:
     style: compressed
@@ -38,3 +38,4 @@ exclude:
 
 include:
     - _pages
+    - blog

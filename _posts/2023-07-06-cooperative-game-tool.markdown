@@ -2,7 +2,6 @@
 layout: post
 date: 2023-07-06 07:00:00
 title: Cooperative Game Tool Post
-permalink: /cooperative-game-tool
 ---
 # Cooperative Game Tool Post
 

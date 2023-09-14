@@ -89,35 +89,36 @@ function App() {
     }, [setCgtLib]);
 
     return (
-        <div className="d-flex flex-column justify-content-start p-3">
-            <div className="p-2">
-                <textarea
-                    className="w-100 m-auto"
-                    onChange={(event) => {
-                        setCsv(event.target.value);
-                    }}
-                    rows={9}
-                    defaultValue={csv}
-                ></textarea>
-            </div>
-            <div className="d-flex flex-row justify-content-center w-100">
-                <div className="d-flex flex-row justify-content-center p-2">
-                    <button type="button" className="btn btn-primary" onClick={solveProblem}>
-                        Solve
-                    </button>
+        <>
+            <div>
+                <div>
+                    <textarea
+                        onChange={(event) => {
+                            setCsv(event.target.value);
+                        }}
+                        rows={9}
+                        defaultValue={csv}
+                    ></textarea>
+                </div>
+                <div>
+                    <div>
+                        <button type="button" onClick={solveProblem}>
+                            Solve
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    {solution &&
+                        solution.map((elem) => (
+                            <div key={elem.player}>
+                                <div>Player: {elem.player}</div>
+                                <div>Nucleolus: {elem.nucleolus}</div>
+                                <br />
+                            </div>
+                        ))}
                 </div>
             </div>
-            <div className="d-flex flex-column justify-content-start p-2">
-                {solution &&
-                    solution.map((elem) => (
-                        <div key={elem.player} className="d-flex flex-row justify-content-center p-2">
-                            <div>Player: {elem.player}</div>
-                            <div>Nucleolus: {elem.nucleolus}</div>
-                            <br />
-                        </div>
-                    ))}
-            </div>
-        </div>
+        </>
     );
 }
 

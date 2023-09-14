@@ -3,8 +3,6 @@ layout: post
 date: 2023-07-05 07:00:00
 title: Nucleolus solution applied to Formula 1 business
 ---
-# Game Theory in Formula 1: Application of the Nucleolus Solution 
-
 Formula 1, a high-speed racing event, is not just about the competition on the track; it involves intricate interactions between stakeholders, ranging from drivers, teams, and manufacturers, to sponsors, media, and fans. These interactions can be aptly analyzed using the lens of game theory, specifically the concept of the nucleolus solution. 
 
 ## Table of Contents
@@ -39,7 +37,7 @@ The first step involves identifying the coalitions and their worth, i.e., how mu
 
 First, we must enumerate F1 teams as player of a Cooperative Game. We will define Ferrari as *player 1*, Mercedes as *player 2*, Red Bull as *player 3*, Alpine as *player 4*, McLaren as *player 5*, Aston Martin as *player 6*, Alpha Tauri as *player 7*, Haas as *player 8*, Williams as *player 9*, and Sauber as *player 10*.
 
-Afterwards, we must define the characteristic payoff for the posible colaitions in the game. If it is a full game, then we need to define a value for de $2^n - 1$ posible coalitions, knowing that the number of players $n = 10$ in this case. The minus 1 scenario belongs to the empty game $v({\empty})$ that is always $0$.   
+Afterwards, we must define the characteristic payoff for the posible colaitions in the game. If it is a full game, then we need to define a value for de $$2^n - 1$$ posible coalitions, knowing that the number of players $$n = 10$$ in this case. The minus 1 scenario belongs to the empty game $$v({\varnothing})$$ that is always $$0$$.   
 
 ### Benefits of Applying the Nucleolus Solution {#benefits-of-applying-the-nucleolus-solution}
 

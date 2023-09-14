@@ -37,13 +37,13 @@ HOMEPAGE STYLING
 
 #home {
     .posts,
-    .pageTitle,
+    .page-title,
     .pagination {
         float: none;
         margin: 0 auto 1.5em;
     }
 
-    .pageTitle {
+    .page-title {
         margin: 1rem auto 1em;
     }
 }
@@ -138,6 +138,16 @@ MENU STYLING
 /***************
 POST STYLING
 ***************/
+.article-body {
+    display: grid;
+    align-items: start;
+    grid-template-columns: 3fr 2fr;
+    column-gap: 50px;
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
 
 .post {
     h1,
@@ -150,7 +160,7 @@ POST STYLING
     ul,
     ol,
     dl,
-    .pageTitle {
+    .page-title {
         float: none;
         margin: 0 auto 2rem;
     }
@@ -170,7 +180,7 @@ POST STYLING
         margin: 1rem auto;
     }
 
-    .pageTitle {
+    .page-title {
         margin: 1rem auto 1em;
     }
 

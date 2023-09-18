@@ -16,7 +16,7 @@ Cooperative game theory offers a rich framework for analyzing strategic interact
 -   [Sources](#sources)
 
 <figure>
-	<img src="/assets/img/posts/2023-07-06-cooperative-game-tool/cooperation-1.png" alt="" width="50%"> 
+	<img src="/assets/img/posts/2023-07-06-cooperative-game-tool/cooperation-1.png" alt=""> 
 	<!-- <figcaption>Fig1. - Cooperation Schema</figcaption> -->
 </figure>
 

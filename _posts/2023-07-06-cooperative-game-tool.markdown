@@ -2,6 +2,7 @@
 layout: post
 date: 2023-07-06 07:00:00
 title: Cooperative Game Tool
+comments: true
 img: /assets/img/posts/2023-07-06-cooperative-game-tool/cooperation-1.png
 ---
 

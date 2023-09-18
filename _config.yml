@@ -2,7 +2,7 @@ title: Idle Science
 description: >-
     "Idle Science", your go-to destination for exploring the untapped potential of science in achieving a more equitable and sustainable world.
 
-url: https://blog.idle.science
+url: https://idle.science
 paginate_path: /blog/page:num/
 permalink: /blog/:title
 
@@ -22,7 +22,7 @@ social:
 google_analytics: 'G-8QPR7MQ5QD'
 
 disqus:
-    shortname: idlescience
+    shortname: https-idle-science
 
 exclude:
     - .sass-cache/

@@ -336,14 +336,14 @@ POST NAV STYLING
         }
 
         span {
+            background-color: rgba(0, 0, 0, 0.5);
             z-index: 10;
-            position: relative;
             padding: 0.5rem;
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
             width: 100%;
-            line-height: 1.4;
+            height: 100%;
+            vertical-align: middle;
+            display: inline-block;
         }
 
         &.image {

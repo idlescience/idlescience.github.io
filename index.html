@@ -19,8 +19,8 @@ title: Home
                     {{ post.excerpt }}
                 {%- endif -%}
                 
-                {%- if post.img -%}
-                <img src="{{ post.img }}" alt="" />
+                {%- if post.image -%}
+                <img src="{{ '/assets/img/' | append: post.image }}" alt="" />
                 {%- endif -%}
             </div>
         </article>

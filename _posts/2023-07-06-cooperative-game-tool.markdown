@@ -3,7 +3,7 @@ layout: post
 date: 2023-07-06 07:00:00
 title: Cooperative Game Tool
 comments: true
-img: /assets/img/posts/2023-07-06-cooperative-game-tool/cooperation-1.png
+image: posts/2023-07-06-cooperative-game-tool/cooperation-1.png
 ---
 
 Cooperative game theory offers a rich framework for analyzing strategic interactions among rational players. However, **solving cooperative games can be computationally intensive and complex**, especially when dealing with a large number of players and possible coalitions. This post marks a significant step forward in addressing this challenge by **introducing a web tool** that is not only fast but also user-friendly. We invite you to leverage this tool to simplify the process of defining and solving cooperative games.
@@ -16,7 +16,7 @@ Cooperative game theory offers a rich framework for analyzing strategic interact
 -   [Sources](#sources)
 
 <figure>
-	<img src="/assets/img/posts/2023-07-06-cooperative-game-tool/cooperation-1.png" alt=""> 
+	<img src="/assets/img/posts/2023-07-06-cooperative-game-tool/cooperation-1.png" alt="" width="50%"> 
 	<!-- <figcaption>Fig1. - Cooperation Schema</figcaption> -->
 </figure>
 

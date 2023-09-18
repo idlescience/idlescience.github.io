@@ -38,7 +38,7 @@
     {%- if page.image -%}
     <meta content="{{ site.url }}/assets/img/{{ page.image }}" property="og:image" />
     {%- else -%}
-    <meta content="{{ '/assets/img/banner-mechanics.jpg' | prepend: site.url }}" property="og:image" />
+    <meta content="{{ '/assets/img/logo.png' | prepend: site.url }}" property="og:image" />
     {%- endif -%}
 
     <!-- Twitter Cards -->
@@ -69,7 +69,7 @@
     {%- endif -%}
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/assets/img/flask.ico" />
+    <link rel="icon" type="image/png" href="/assets/img/logo.png" />
 
     <!-- Come and get me RSS readers -->
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}"

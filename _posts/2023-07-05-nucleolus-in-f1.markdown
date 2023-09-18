@@ -2,14 +2,14 @@
 layout: post
 date: 2023-07-05 07:00:00
 title: Nucleolus solution applied to Formula 1 business
-img: /assets/img/posts/2023-07-05-nucleolus-in-f1/cooperation-1.png
+image: posts/2023-07-05-nucleolus-in-f1/cooperation-1.png
 ---
 
 Formula 1, a high-speed racing event, is not just about the competition on the track; it **involves intricate interactions between stakeholders, ranging from drivers, teams, and manufacturers**, to sponsors, media, and fans. These interactions can be aptly analyzed using the lens of game theory, specifically the concept of the nucleolus solution.
 
 <figure>
-	<img src="/assets/img/posts/2023-07-05-nucleolus-in-f1/cooperation-1.png" alt=""> 
-	<figcaption>Fig1. - Cooperation Schema</figcaption>
+	<img src="/assets/img/posts/2023-07-05-nucleolus-in-f1/cooperation-1.png" alt="" width="50%"> 
+	<!-- <figcaption>Fig1. - Cooperation Schema</figcaption> -->
 </figure>
 
 ## Table of Contents

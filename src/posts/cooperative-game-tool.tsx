@@ -7,8 +7,6 @@ import CsvMapper from '../mapper/csv-mapper';
 import { IGame, Payoff } from '../core/game';
 import BitmaskMapper from '../mapper/bitmask-mapper';
 
-import '../css/cooperative-game-tool.css';
-
 const CooperativeGameTool = () => {
     const [csv, setCsv] = useState<string>(`coalition;payoff
 1;2

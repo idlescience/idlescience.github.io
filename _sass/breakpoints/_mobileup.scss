@@ -292,6 +292,14 @@ POST STYLING
             margin-bottom: 0;
         }
     }
+
+    textarea {
+        height: auto;
+        width: 100%;
+        font-family: $sans-serif;
+        font-weight: normal;
+        font-size: 0.8em;
+    }
 }
 
 /***************

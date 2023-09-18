@@ -1,48 +1,29 @@
 # idlescience.github.io
 ♻️ Idle Science | Reduce, Reduce, Recycle
 
-## Edit a page
-One common issue when build a post is to forget the relation between ReactJS and Jekyll posts. To leverage this relation you must include the ```<div id='YOUR_CUSTOM_NAME-react-app'></div>``` element in the _posts/YOUR_CUSTOM_NAME.md, and use "YOUR_CUSTOM_NAME-react-app" as a container id location in the ReactJS app.
+## Edit a post
+One common issue when build a post is to forget the relation between ReactJS and Jekyll posts. To leverage this relation you must include the ```<div id='YOUR_CUSTOM_NAME-react-app'></div>``` element in the _posts/YOUR_CUSTOM_NAME.md, ausing "YOUR_CUSTOM_NAME-react-app" as a container id location mapped automatically by the ReactJS app.
 
-1) Create the page-javascript-file.tsx at *src/pages/YOUR_CUSTOM_NAME.tsx* with a content similar to
-```javascript
-import React from 'react'
-import ReactDOM from 'react-dom'
-
-import { useState } from 'react'
-
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-    </>
-  )
-}
-
-const root = document.getElementById('YOUR_CUSTOM_NAME-react-app') as HTMLElement;
-if (!!root) {
-    ReactDOM.createRoot(root).render(
-        <React.StrictMode>
-            <App />
-        </React.StrictMode>
+1) Create the TSX post script at *src/posts/YOUR_CUSTOM_NAME.tsx* with a content similar to
+```typescript
+const YOUR_CUSTOM_NAME = () => {
+    return (
+        <>
+            Hello World!
+        </>
     );
 }
+
+export default YOUR_CUSTOM_NAME;
 ```
 
-2) Add and entry to the build options in *vite.config.js*
+2) Add an entry to the pages dictionary at the *src/App.tsx* file
+```typescript
+import YOUR_CUSTOM_NAME from './posts/YOUR_CUSTOM_NAME';
 
-```json
-...
-      entry: [
-        resolve(__dirname, 'src/page-javascript-file.tsx'),
-      ],
-...
+const pages: { [key: string]: JSX.Element } = {
+    'YOUR_CUSTOM_NAME': <YOUR_CUSTOM_NAME />,
+};
 ```
 
 ## Run full blog

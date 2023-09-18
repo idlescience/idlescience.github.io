@@ -1,13 +1,22 @@
 body {
-  font-size: 137.5%;
+    font-size: 137.5%;
 }
 
 .container {
-  max-width: 990px;
+    max-width: 990px;
+    padding: 0 20px;
 }
 
 .header {
     .container {
         max-width: 990px;
+        padding: 0 20px;
+    }
+}
+
+.footer {
+    .container {
+        max-width: 990px;
+        padding: 0 20px;
     }
 }

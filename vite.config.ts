@@ -64,7 +64,7 @@ export default defineConfig({
     },
     build: {
         lib: {
-            entry: globSync('src/page/*.tsx'),
+            entry: globSync('src/posts/*.tsx'),
             name: 'idlescience',
             formats: ['es'],
             fileName: '[name]',

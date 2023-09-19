@@ -35,8 +35,6 @@ If either driver chose not to cooperate, they risked lower finishes:
 
 If either broke the cooperation after their tacit agreement (for example, if Norris used DRS to overtake Sainz), both drivers would fall back, with Sainz in third and Norris in fourth.
 
----
-
 ## Real-World Result
 
 In an incredible display of strategic cooperation, both drivers adhered to their tacit agreed roles during the Singapore Grand Prix. The result was astounding: Carlos Sainz finished in first place, and Lando Norris secured the second position. The outcome perfectly matched the theoretical optimal result outlined by game theory, confirming that the Nash equilibrium for this scenario is indeed mutual cooperation.

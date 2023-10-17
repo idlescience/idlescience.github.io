@@ -10,10 +10,9 @@ Formula 1 is often viewed as a cutthroat competition where individual performanc
 
 ## Table of Contents
 
-1. [Introduction](#Introduction)
-2. [Problem Statement](#Problem-Statement)
-3. [Real-World Result](#Real-World-Result)
-4. [Conclusions](#Conclusions)
+1. [Problem Statement](#Problem-Statement)
+2. [Real-World Result](#Real-World-Result)
+3. [Conclusions](#Conclusions)
 
 <figure>
 	<img src="/assets/img/posts/2023-09-18-drs-cooperation-in-singapore-gp/carlos y lando been pursued.png" alt=""> 

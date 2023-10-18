@@ -4,6 +4,7 @@ _vendor
 .jekyll-cache
 .jekyll-metadata
 vendor
+Gemfile.lock
 
 # Logs
 logs

@@ -26,6 +26,12 @@ const pages: { [key: string]: JSX.Element } = {
 };
 ```
 
+## Install dependencies
+```bash
+bundle install
+yarn install
+```
+
 ## Run full blog
 ```bash
 yarn build --watch & bundle exec jekyll serve --baseurl=""

@@ -24,3 +24,4 @@ gem "jekyll"
 gem "jekyll-paginate"
 gem "support-for"
 gem "webrick", "~> 1.8"
+gem 'jekyll-scholar', group: :jekyll_plugins

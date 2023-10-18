@@ -14,12 +14,8 @@ title: Home
             </h3>
             <div class="article-body">
                 {%- if post.description -%}
-                    <p>{{ post.description }}</p>
-                {%- else -%}
-                    {{ post.excerpt }}
-                {%- endif -%}
-                
-                {%- if post.image -%}
+                <p>{{ post.description }}</p>
+                {%- else -%} {{ post.excerpt }} {%- endif -%} {%- if post.image -%}
                 <img src="{{ '/assets/img/' | append: post.image }}" alt="" />
                 {%- endif -%}
             </div>
@@ -44,55 +40,17 @@ title: Home
     <img src="{{ '/assets/img/home/banner-office.png' }}" alt="" />
 
     <p>
-        In an era characterized by <b>profound global challenges</b> such as climate change, social inequalities, and
-        environmental degradation, it is imperative that we harness the power of scientific knowledge and innovation for
-        the betterment of society. However, despite the incredible advancements in scientific research and
-        understanding, there exists a persistent gap between the science available to us and its practical application
-        in addressing critical issues.
+        In an era marked by global challenges like <b>climate change</b> and <b>disparities</b>, it's crucial to leverage the insights of research and expertise for societal and environmental improvement. Our website advocates for the active incorporation of such insights into policy-making and collective efforts.
     </p>
-
     <p>
-        Our website aims to shed light on this gap and advocate for the utilization of science when it is most needed,
-        for the promotion of equity and sustainability. We believe that science should not remain confined within
-        academic circles or industry laboratories, but should actively inform policies, drive decision-making processes,
-        and inspire collective action.
+        We offer in-depth articles examining why these insights often remain untapped in achieving sustainability and equity. By highlighting successful examples and innovative strategies, we underscore the transformative power of Cooperative Game Theory as an agent for change. Our platform invites <b>researchers, policymakers, activists, and the public</b> to share ideas and work towards an equitable and sustainable future.
     </p>
-
-    <p>
-        Through thought-provoking articles, engaging multimedia content, and interviews with experts, we delve into the
-        root causes of why science is often overlooked or underutilized in the pursuit of equity and sustainability. We
-        explore the intricate dynamics between science, society, and governance, highlighting the systemic barriers that
-        hinder effective science-based solutions from being implemented.
-    </p>
-
-    <p>
-        By presenting inspiring case studies, successful initiatives, and transformative approaches, we showcase the
-        immense potential of science as a catalyst for positive change. Our website serves as a platform for scientists,
-        policymakers, activists, and concerned individuals to come together, exchange ideas, and collaborate towards a
-        more inclusive, just, and sustainable future.
-    </p>
-
-    <p>
-        Whether you are a scientist seeking to make your research more accessible and impactful, a policymaker searching
-        for evidence-based solutions, or an engaged citizen looking to understand the role of science in creating a
-        fairer and greener world, our website provides a wealth of knowledge and resources to support your journey.
-    </p>
-
-    <p>
-        Join us as we bridge the gap between science and action, encouraging the widespread integration of scientific
-        principles and findings into the realms of social justice, environmental conservation, and sustainable
-        development. Together, let's harness the full potential of science to forge a path towards a future that
-        prioritizes equity, preserves our planet, and safeguards the well-being of all.
-    </p>
-
     <div id="contact">
         <h1 class="page-title">Contact Us</h1>
         <div class="contactContent">
             <p class="intro">Please fill out the form to get in touch with us!</p>
             <p>
-                Whether you're a researcher looking to collaborate, a student with a burning question, or simply a
-                science enthusiast eager to learn more, we'd love to hear from you. Your questions, comments, and
-                suggestions are invaluable to us as we strive to provide the most accurate and up-to-date content.
+                Ready to dive deeper into how <b>Cooperative Game Theory</b> can shape a better world? Whether you're a researcher, policymaker, or simply curious, we're here to assist. Reach out through the form next to this and let's collaborate to bridge insights with impactful actions for a sustainable, fair, and holistic future.
             </p>
         </div>
         <form action="https://formspree.io/f/mwkdqknz" method="POST">

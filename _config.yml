@@ -11,7 +11,7 @@ sass:
 
 markdown: kramdown
 highlighter: rouge
-plugins: [jekyll-paginate]
+plugins: ['jekyll-paginate', 'jekyll/scholar']
 paginate: 5
 
 social:
@@ -23,6 +23,10 @@ google_analytics: 'G-8QPR7MQ5QD'
 
 disqus:
     shortname: https-idle-science
+
+scholar:
+    style: ieee
+    bibliography: references.bib
 
 exclude:
     - .sass-cache/

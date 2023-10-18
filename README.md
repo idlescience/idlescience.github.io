@@ -27,6 +27,9 @@ const pages: { [key: string]: JSX.Element } = {
 ```
 
 ## Install dependencies
+
+https://open-research.gemmadanks.com/tutorials/how-to-use-jekyll-scholar-with-github-pages/
+
 ```bash
 bundle install
 yarn install

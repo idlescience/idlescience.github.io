@@ -7,6 +7,29 @@ import CsvMapper from '../mapper/csv-mapper';
 import { IGame, Payoff } from '../core/game';
 import BitmaskMapper from '../mapper/bitmask-mapper';
 
+function pi(alpha_i: number, c_i: number, q_i: number, Q: number, a: number, b: number): number {
+    return b * alpha_i * (a * Q - Q ** 2 / 2) - (c_i * q_i ** 2) / 2;
+}
+
+function computeQ(a: number, b: number, theta: number[], c: number[], alpha: number[]): number {
+    let sumTheta = 0;
+    for (let j = 0; j < theta.length; j++) {
+        sumTheta += theta[j];
+    }
+
+    let sumCInverse = 0;
+    let sumAlpha = 0;
+    for (let i = 0; i < c.length; i++) {
+        sumCInverse += 1 / c[i];
+        sumAlpha += alpha[i];
+    }
+
+    let numerator = a * b * (sumTheta + sumCInverse * sumAlpha);
+    let denominator = 1 + b * (sumTheta + sumCInverse * sumAlpha);
+
+    return numerator / denominator;
+}
+
 const IEABenefitsRedistribution = () => {
     const [csv, setCsv] = useState<string>(`coalition;payoff
 1;2

@@ -36,7 +36,7 @@ It's essential to define the expressions that describe the benefit calculation o
 $$
 \begin{equation}
     \pi_{i}(\alpha_{i}, c_{i}, q_{i}, Q) = b\alpha_{i}\left(aQ-\frac{Q^{2}}{2}\right) - \frac{c_{i}(q_{i})^{2}}{2}
-    \label{eq:benefit}
+    \label{eq:pi}
 \end{equation}
 $$
 
@@ -48,7 +48,7 @@ The global emissions reduction $Q$ is the compound of the optimal emissions redu
 
 $$
 \begin{equation}
-    Q = \frac{ab\left(\sum{j \in T}{\theta_{j}} + \sum{i \in S}{\frac{1}{c_{i}}} + \sum{i \in S}{\alpha_{i}}\right)}{1+b\left(\sum{j \in T}{\theta_{j}} + \sum{i \in S}{\frac{1}{c_{i}}} + \sum{i \in S}{\alpha_{i}}\right)}
+    Q = \frac{ab\left(\sum_{j \in T}{\theta_{j}} + \sum_{i \in S}{\frac{1}{c_{i}}} \sum_{i \in S}{\alpha_{i}}\right)}{1+b\left(\sum_{j \in T}{\theta_{j}} + \sum_{i \in S}{\frac{1}{c_{i}}} \sum_{i \in S}{\alpha_{i}}\right)}
     \label{eq:q}
 \end{equation}
 $$
@@ -63,7 +63,7 @@ To illustrate the above mathematical solutions in a practical scenario, consider
 
 For our cooperative game, let's assign arbitrary values to the parameters for each country based on hypothetical scenarios related to their economic capacities, emissions levels, and cost-benefit analyses. The table below summarizes these values:
 
-| Country      | $ \alpha\_{i} $ (Global Benefit Share) | $ c\_{i} $ (Marginal Cost of Emission Reduction) |
+| Country      | $ \alpha_{i} $ (Global Benefit Share) | $ c_{i} $ (Marginal Cost of Emission Reduction) |
 | ------------ | -------------------------------------- | ------------------------------------------------ |
 | Australia    | 0.065                                  | 0.92                                             |
 | Brazil       | 0.062                                  | 0.86                                             |
@@ -76,13 +76,20 @@ For our cooperative game, let's assign arbitrary values to the parameters for ea
 | South Africa | 0.055                                  | 0.80                                             |
 | Spain        | 0.032                                  | 1.15                                             |
 
-Given these values, we can compute the net benefit for each country using the equation \eqref{eq:benefit}:
+Given these values, we can compute the net benefit for each country using the equation \eqref{eq:pi}:
 
 <div id="iea-benefits-redistribution-react-app"></div>
 
-From the computed values, we can deduce the Shapley value for each country, which represents the equitable distribution of benefits derived from the joint emission reduction efforts. This experimental example serves as a proof of concept for the mathematical model and demonstrates how benefit redistribution among nations can be computed in practice.
+From the computed net benefit values of each posible colaition in the game, we can deduce the Shapley value for each country, which represents the equitable distribution of benefits derived from the grand coalition emission reduction effort. The benefit of any coalition $S \subseteq N$ in this game is the sum of the benefit of ervery member $i \in $ in the coalition, conditioned to the fact that all of the members are part of it when computing each country benefit.
 
-It's essential to note that these values are hypothetical and serve only as an example to illustrate the mathematical solution. Real-world values would require comprehensive data collection and analysis.
+$$
+\begin{equation}
+    \pi(S) = \sum_{i \in S}{\pi_{i}}
+    \label{eq:pi_s}
+\end{equation}
+$$
+
+This experimental example serves as a proof of concept for the mathematical model and demonstrates how benefit redistribution among nations can be computed in practice. It's essential to note that these values are hypothetical and serve only as an example to illustrate the mathematical solution. Real-world values would require comprehensive data collection and analysis.
 
 ## References
 

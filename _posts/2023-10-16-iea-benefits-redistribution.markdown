@@ -78,17 +78,11 @@ For our cooperative game, let's assign arbitrary values to the parameters for ea
 
 Given these values, we can compute the net benefit for each country using the equation \eqref{eq:benefit}:
 
-To find the global emissions reduction $ Q $, we use:
-
-$$ Q = \frac{ab\left(\sum{j \in T}{\theta*{j}} + \sum{i \in S}{\frac{1}{c*{i}}} + \sum{i \in S}{\alpha*{i}}\right)}{1+b\left(\sum{j \in T}{\theta*{j}} + \sum{i \ in S}{\frac{1}{c*{i}}} + \sum{i \in S}{\alpha*{i}}\right)} $$
+<div id="iea-benefits-redistribution-react-app"></div>
 
 From the computed values, we can deduce the Shapley value for each country, which represents the equitable distribution of benefits derived from the joint emission reduction efforts. This experimental example serves as a proof of concept for the mathematical model and demonstrates how benefit redistribution among nations can be computed in practice.
 
 It's essential to note that these values are hypothetical and serve only as an example to illustrate the mathematical solution. Real-world values would require comprehensive data collection and analysis.
-
-<div id="iea-benefits-redistribution-react-app"></div>
-
-## Conclusions
 
 ## References
 

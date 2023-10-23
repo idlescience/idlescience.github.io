@@ -22,7 +22,7 @@ Cooperative game theory offers a rich framework for analyzing strategic interact
 
 ## Preparation {#preparation}
 
-The first step is defining the game in a way that captures all the relevant details. Specifically, you need to enumerate the players and define the characteristic payoffs for all possible coalitions. In a full game with $$n$$ players, this involves defining values for $$2^n - 1$$ possible coalitions. The '-1' accounts for the empty coalition $$v(\varnothing)$$, which always has a payoff of zero in the type of games handled by this tool.
+The first step is defining the game in a way that captures all the relevant details. Specifically, you need to enumerate the players and define the characteristic payoffs for all possible coalitions. In a full game with $n$ players, this involves defining values for $2^n - 1$ possible coalitions. The '-1' accounts for the empty coalition $v(\varnothing)$, which always has a payoff of zero in the type of games handled by this tool.
 
 ## Computation {#computation}
 

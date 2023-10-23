@@ -44,7 +44,7 @@ The first step involves identifying the coalitions and their worth, i.e., how mu
 
 First, we must enumerate F1 teams as player of a Cooperative Game. We will define Ferrari as _player 1_, Mercedes as _player 2_, Red Bull as _player 3_, Alpine as _player 4_, McLaren as _player 5_, Aston Martin as _player 6_, Alpha Tauri as _player 7_, Haas as _player 8_, Williams as _player 9_, and Sauber as _player 10_.
 
-Afterwards, we must define the characteristic payoff for the posible colaitions in the game. If it is a full game, then we need to define a value for de $$2^n - 1$$ posible coalitions, knowing that the number of players $$n = 10$$ in this case. The minus 1 scenario belongs to the empty game $$v({\varnothing})$$ that is always $$0$$.
+Afterwards, we must define the characteristic payoff for the posible colaitions in the game. If it is a full game, then we need to define a value for de $2^n - 1$ posible coalitions, knowing that the number of players $n = 10$ in this case. The minus 1 scenario belongs to the empty game $v({\varnothing})$ that is always $0$.
 
 ### Benefits of Applying the Nucleolus Solution {#benefits-of-applying-the-nucleolus-solution}
 

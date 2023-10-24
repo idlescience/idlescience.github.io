@@ -37,8 +37,6 @@ const CooperativeGameTool = () => {
             }
             setNucleolus(newNucleolus);
 
-            console.log('v', v);
-
             const shapleyResult = cgtLib.shapley(v_in, n_in);
             const newShapley: Payoff[] = [];
             for (let i = 0; i < shapleyResult.size(); i++) {

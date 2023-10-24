@@ -68,6 +68,7 @@ class Game implements IGame {
     }
 
     constructor();
+    constructor(NQuote: PlayerSet);
     constructor(NQuote: PlayerSet, payoffsQuote: GamePayoffs);
     constructor(NQuote?: PlayerSet, payoffsQuote?: GamePayoffs) {
         if (NQuote) {

@@ -61,22 +61,7 @@ Certainly! Here's the markdown code for the "Experimental Example" section:
 
 To illustrate the above mathematical solutions in a practical scenario, consider ten relevant countries that have shown active participation in global environmental agreements. These countries include Australia, Brazil, Canada, China, Germany, India, Japan, Russia, South Africa, and Spain.
 
-For our cooperative game, let's assign arbitrary values to the parameters for each country based on hypothetical scenarios related to their economic capacities, emissions levels, and cost-benefit analyses. The table below summarizes these values:
-
-| Country      | $ \alpha_{i} $ (Global Benefit Share) | $ c_{i} $ (Marginal Cost of Emission Reduction) |
-| ------------ | -------------------------------------- | ------------------------------------------------ |
-| Australia    | 0.065                                  | 0.92                                             |
-| Brazil       | 0.062                                  | 0.86                                             |
-| Canada       | 0.068                                  | 0.95                                             |
-| China        | 0.120                                  | 1.10                                             |
-| Germany      | 0.075                                  | 1.00                                             |
-| India        | 0.110                                  | 1.05                                             |
-| Japan        | 0.080                                  | 0.98                                             |
-| Russia       | 0.090                                  | 0.88                                             |
-| South Africa | 0.055                                  | 0.80                                             |
-| Spain        | 0.032                                  | 1.15                                             |
-
-Given these values, we can compute the net benefit for each country using the equation \eqref{eq:pi}:
+For our cooperative game, let's assign arbitrary values to the parameters for each country based on hypothetical scenarios related to their economic capacities, emissions levels, and cost-benefit analyses. Given these values, we can compute the net benefit for each country using the equation \eqref{eq:pi}:
 
 <div id="iea-benefits-redistribution-react-app"></div>
 

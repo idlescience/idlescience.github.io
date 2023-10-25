@@ -106,67 +106,66 @@ const IEABenefitsRedistribution = () => {
     const [playerShare, setPlayerShare] = useState<PlayerShare>({
         '1': {
             name: 'Australia',
-            alpha: 0.065,
-            c: 0.92,
+            alpha: 0.09,
+            c: 2.3,
             editing: false,
         },
         '2': {
             name: 'Brazil',
-            alpha: 0.062,
-            c: 0.86,
+            alpha: 0.11,
+            c: 0.9,
             editing: false,
         },
         '3': {
             name: 'Canada',
-            alpha: 0.068,
-            c: 0.95,
+            alpha: 0.07,
+            c: 1.5,
             editing: false,
         },
         '4': {
             name: 'China',
-            alpha: 0.12,
-            c: 1.1,
+            alpha: 0.10,
+            c: 1.7,
             editing: false,
         },
         '5': {
             name: 'Germany',
-            alpha: 0.075,
-            c: 1.0,
+            alpha: 0.08,
+            c: 0.6,
             editing: false,
         },
         '6': {
             name: 'India',
-            alpha: 0.11,
-            c: 1.05,
+            alpha: 0.12,
+            c: 0.2,
             editing: false,
         },
         '7': {
             name: 'Japan',
-            alpha: 0.08,
-            c: 0.98,
+            alpha: 0.09,
+            c: 0.4,
             editing: false,
         },
         '8': {
             name: 'Russia',
-            alpha: 0.09,
-            c: 0.88,
+            alpha: 0.10,
+            c: 1.1,
             editing: false,
         },
         '9': {
             name: 'South Africa',
-            alpha: 0.055,
-            c: 0.8,
+            alpha: 0.12,
+            c: 0.2,
             editing: false,
         },
         '10': {
             name: 'Spain',
-            alpha: 0.032,
-            c: 1.15,
+            alpha: 0.12,
+            c: 1.1,
             editing: false,
         },
     });
 
-    const [nucleolus, setNucleolus] = useState<Payoff[]>();
     const [shapley, setShapley] = useState<Payoff[]>();
     const [cgtLib, setCgtLib] = useState<CgtLib>();
 
@@ -204,13 +203,6 @@ const IEABenefitsRedistribution = () => {
             const v_in = new cgtLib.DoubleVector();
             v.map((x) => v_in.push_back(x));
 
-            const nucleolusResult = cgtLib.nucleolus(v_in, n_in);
-            const newNucleolus: Payoff[] = [];
-            for (let i = 0; i < nucleolusResult.size(); i++) {
-                newNucleolus.push(nucleolusResult.get(i) as Payoff);
-            }
-            setNucleolus(newNucleolus);
-
             const shapleyResult = cgtLib.shapley(v_in, n_in);
             const newShapley: Payoff[] = [];
             for (let i = 0; i < shapleyResult.size(); i++) {
@@ -218,10 +210,13 @@ const IEABenefitsRedistribution = () => {
             }
             setShapley(newShapley);
         }
-    }, [cgtLib, playerShare, setNucleolus, setShapley, setPlayerShare]);
+    }, [cgtLib, playerShare, setShapley, setPlayerShare]);
 
     useEffect(() => {
         cgt_module().then((cgtLib: CgtLib) => setCgtLib(cgtLib));
+        if (typeof (window as any)?.MathJax !== 'undefined') {
+            (window as any).MathJax.typeset();
+        }
     }, [setCgtLib]);
 
     return (
@@ -232,7 +227,7 @@ const IEABenefitsRedistribution = () => {
                         <thead>
                             <tr>
                                 <th>Country</th>
-                                <th>{'$alpha_{i}$'} (Global Benefit Share)</th>
+                                <th>{'$\\alpha_{i}$'} (Global Benefit Share)</th>
                                 <th>{'$c_{i}$'} (Marginal Cost of Emission Reduction)</th>
                             </tr>
                         </thead>
@@ -294,7 +289,7 @@ const IEABenefitsRedistribution = () => {
                         </button>
                     </div>
                 </div>
-                {nucleolus && shapley && (
+                {shapley && (
                     <div className="output-container">
                         <div className="title-container">
                             <h3>Cooperative Game Solution</h3>
@@ -304,15 +299,13 @@ const IEABenefitsRedistribution = () => {
                                 <tr>
                                     <th>Player</th>
                                     <th>Shapley</th>
-                                    <th>Nucleolus</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {Object.keys(playerShare).map((player, index) => (
                                     <tr key={index}>
                                         <td>{playerShare[player].name}</td>
-                                        <td>{shapley[index].toFixed(2)}</td>
-                                        <td>{nucleolus[index].toFixed(2)}</td>
+                                        <td>{shapley[index]}</td>
                                     </tr>
                                 ))}
                             </tbody>

@@ -124,7 +124,7 @@ const IEABenefitsRedistribution = () => {
         },
         '4': {
             name: 'China',
-            alpha: 0.10,
+            alpha: 0.1,
             c: 1.7,
             editing: false,
         },
@@ -148,7 +148,7 @@ const IEABenefitsRedistribution = () => {
         },
         '8': {
             name: 'Russia',
-            alpha: 0.10,
+            alpha: 0.1,
             c: 1.1,
             editing: false,
         },
@@ -214,10 +214,18 @@ const IEABenefitsRedistribution = () => {
 
     useEffect(() => {
         cgt_module().then((cgtLib: CgtLib) => setCgtLib(cgtLib));
+    }, [setCgtLib]);
+
+    useEffect(() => {
+        cgt_module().then((cgtLib: CgtLib) => setCgtLib(cgtLib));
         if (typeof (window as any)?.MathJax !== 'undefined') {
             (window as any).MathJax.typeset();
         }
-    }, [setCgtLib]);
+    }, [shapley]);
+
+    useEffect(() => {
+        solveProblem();
+    }, [solveProblem]);
 
     return (
         <>
@@ -229,89 +237,63 @@ const IEABenefitsRedistribution = () => {
                                 <th>Country</th>
                                 <th>{'$\\alpha_{i}$'} (Global Benefit Share)</th>
                                 <th>{'$c_{i}$'} (Marginal Cost of Emission Reduction)</th>
+                                <th>{'$\\phi_{i}$'} (Shapley Profit Share)</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {Object.keys(playerShare).map((player) => (
+                            {Object.keys(playerShare).map((player, index) => (
                                 <tr key={player}>
                                     <td>
                                         <input
                                             type={'text'}
                                             defaultValue={playerShare[player].name}
-                                            onChange={(e) =>
+                                            onChange={(e) => {
                                                 setPlayerShare({
                                                     ...playerShare,
                                                     [player]: {
                                                         ...playerShare[player],
                                                         name: e.target.value,
                                                     },
-                                                })
-                                            }
+                                                });
+                                            }}
                                         />
                                     </td>
                                     <td>
                                         <input
                                             type={'number'}
                                             defaultValue={playerShare[player].alpha}
-                                            onChange={(e) =>
+                                            onChange={(e) => {
                                                 setPlayerShare({
                                                     ...playerShare,
                                                     [player]: {
                                                         ...playerShare[player],
                                                         alpha: Number(e.target.value),
                                                     },
-                                                })
-                                            }
+                                                });
+                                            }}
                                         />
                                     </td>
                                     <td>
                                         <input
                                             type={'number'}
                                             defaultValue={playerShare[player].c}
-                                            onChange={(e) =>
+                                            onChange={(e) => {
                                                 setPlayerShare({
                                                     ...playerShare,
                                                     [player]: {
                                                         ...playerShare[player],
                                                         c: Number(e.target.value),
                                                     },
-                                                })
-                                            }
+                                                });
+                                            }}
                                         />
                                     </td>
+                                    <td>{shapley && shapley[index].toFixed(9)}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-                    <div className="button-container">
-                        <button type="button" className="button" onClick={solveProblem}>
-                            Solve
-                        </button>
-                    </div>
                 </div>
-                {shapley && (
-                    <div className="output-container">
-                        <div className="title-container">
-                            <h3>Cooperative Game Solution</h3>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Player</th>
-                                    <th>Shapley</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {Object.keys(playerShare).map((player, index) => (
-                                    <tr key={index}>
-                                        <td>{playerShare[player].name}</td>
-                                        <td>{shapley[index]}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                )}
             </div>
         </>
     );
